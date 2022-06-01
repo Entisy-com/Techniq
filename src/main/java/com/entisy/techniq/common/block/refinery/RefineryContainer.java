@@ -136,7 +136,7 @@ public class RefineryContainer extends Container {
         return this.tileEntity.getCapability(CapabilityEnergy.ENERGY);
     }
 
-    public LazyOptional<IFluidStorage> getFluidFromTE() {
-        return this.tileEntity.getCapability(CapabilityFluid.FLUID);
+    public LazyOptional<IFluidHandler> getFluidFromTE() {
+        return this.tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY);
     }
 }
