@@ -1,14 +1,12 @@
 package com.entisy.techniq.common.item.upgrades;
 
-public class RangeUpgradeItem extends UpgradeItem implements Upgrade {
+public class RangeUpgradeItem extends UpgradeItem {
 
-    @Override
     public UpgradeType getUpgradeType() {
         return UpgradeType.RANGE;
     }
 
-    @Override
-    public int getUpgradeStage() {
-        return 2; // adds 2 blocks to the range
+    public static int getUpgradeStage() {
+        return 2;
     }
 }

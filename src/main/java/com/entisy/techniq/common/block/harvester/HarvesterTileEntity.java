@@ -28,10 +28,13 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HarvesterTileEntity extends MachineTileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyHandler {
 
-    private final int workTime = 20;
-    private final int radius = 6;
+    private final int workTime = 20 / (getSpeedUpgrades().size() * SpeedUpgradeItem.getUpgradeStage() + 1);
+    private final int radius = 6 + (getRangeUpgrades().size() * RangeUpgradeItem.getUpgradeStage());
 
     public HarvesterTileEntity() {
         super(6, 500, 0, ModTileEntityTypes.HARVESTER_TILE_ENTITY_TYPE.get());
@@ -171,9 +174,9 @@ public class HarvesterTileEntity extends MachineTileEntity implements ITickableT
     }
 
     private boolean tryMoveStack() {
-        SimpleList<BlockPos> harvestableBlocks = getHarvestableBlocks();
         boolean ret = false;
-        for (ItemStack stack : Block.getDrops(level.getBlockState(harvestableBlocks.get(0)), (ServerWorld) level, harvestableBlocks.get(0), this)) {
+        List<ItemStack> test = Block.getDrops(level.getBlockState(getHarvestableBlocks().get(0)), (ServerWorld) level, getHarvestableBlocks().get(0), this);
+        for (ItemStack stack : test) {
             for (int i = 0; i < slots; i++) {
                 if ((inventory.getItem(i).sameItem(stack) && inventory.getItem(i).getCount() < 64) || (inventory.getItem(i).getItem() == Items.AIR) || inventory.getItem(i) == ItemStack.EMPTY) {
                     ret = true;
@@ -185,8 +188,7 @@ public class HarvesterTileEntity extends MachineTileEntity implements ITickableT
     }
 
     private void insertDropsInInventory() {
-        SimpleList<BlockPos> harvestableBlocks = getHarvestableBlocks();
-        for (ItemStack stack : Block.getDrops(level.getBlockState(harvestableBlocks.get(0)), (ServerWorld) level, harvestableBlocks.get(0), this)) {
+        for (ItemStack stack : Block.getDrops(level.getBlockState(getHarvestableBlocks().get(0)), (ServerWorld) level, getHarvestableBlocks().get(0), this)) {
             for (int i = 0; i < slots; i++) {
                 if ((inventory.getItem(i).sameItem(stack) && inventory.getItem(i).getCount() < 64) || (inventory.getItem(i).getItem() == Items.AIR) || inventory.getItem(i) == ItemStack.EMPTY) {
                     ItemStack result = stack.copy();

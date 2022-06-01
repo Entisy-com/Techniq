@@ -3,7 +3,7 @@ package com.entisy.techniq.common.item.upgrades;
 import com.entisy.techniq.core.tab.TechniqTab;
 import net.minecraft.item.Item;
 
-public class UpgradeItem extends Item implements Upgrade{
+public class UpgradeItem extends Item {
 
     private int stage;
 
@@ -11,13 +11,11 @@ public class UpgradeItem extends Item implements Upgrade{
         super(new Item.Properties().stacksTo(8).tab(TechniqTab.TECHNIQ_TAB));
     }
 
-    @Override
     public UpgradeType getUpgradeType() {
-        return null;
+        return UpgradeType.NONE;
     }
 
-    @Override
-    public int getUpgradeStage() {
+    public static int getUpgradeStage() {
         return 0;
     }
 }
