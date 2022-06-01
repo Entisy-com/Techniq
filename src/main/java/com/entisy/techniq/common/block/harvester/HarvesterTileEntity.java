@@ -33,7 +33,7 @@ import java.util.List;
 
 public class HarvesterTileEntity extends MachineTileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyHandler {
 
-    private final int workTime = 20 / (getSpeedUpgrades().size() * SpeedUpgradeItem.getUpgradeStage() + 1);
+    private final int workTime = 20 / (getSpeedUpgrades().size() * SpeedUpgradeItem.getUpgradeStage() == 0 ? getSpeedUpgrades().size() * SpeedUpgradeItem.getUpgradeStage() : 1);
     private final int radius = 6 + (getRangeUpgrades().size() * RangeUpgradeItem.getUpgradeStage());
 
     public HarvesterTileEntity() {
@@ -184,6 +184,7 @@ public class HarvesterTileEntity extends MachineTileEntity implements ITickableT
                 }
             }
         }
+        
         return ret;
     }
 

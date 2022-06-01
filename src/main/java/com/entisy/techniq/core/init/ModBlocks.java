@@ -17,6 +17,7 @@ import com.entisy.techniq.common.block.metalPress.MetalPressBlock;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerBlock;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerBlock;
 import com.entisy.techniq.common.block.refinery.RefineryBlock;
+import com.entisy.techniq.common.block.waterSource.WaterSourceBlock;
 import com.entisy.techniq.core.tab.TechniqTab;
 import com.entisy.techniq.core.util.SimpleList;
 import net.minecraft.block.AbstractBlock;
@@ -37,6 +38,11 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
             Techniq.MOD_ID);
+
+    /**
+     *  TEMP
+     */
+    public static final RegistryObject<Block> INFINITE_WATER_SOURCE = register("infinite_water_source", WaterSourceBlock::new);
 
     /**
      * METAL
