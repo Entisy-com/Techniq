@@ -42,7 +42,7 @@ public class ModBlocks {
     /**
      *  TEMP
      */
-    public static final RegistryObject<Block> INFINITE_WATER_SOURCE = register("infinite_water_source", WaterSourceBlock::new);
+    public static final RegistryObject<SimpleBlock> INFINITE_WATER_SOURCE = register("infinite_water_source", WaterSourceBlock::new);
 
     /**
      * METAL
