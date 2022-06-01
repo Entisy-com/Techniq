@@ -52,7 +52,7 @@ public class SimpleList<T>
     
     public boolean isEmpty()
     {
-    	return list.size() > 0;
+    	return list.size() <= 0;
     }
     
     public int size()

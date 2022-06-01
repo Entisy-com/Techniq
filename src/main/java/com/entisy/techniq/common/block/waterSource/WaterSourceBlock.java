@@ -21,7 +21,9 @@ public class WaterSourceBlock extends Block {
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTrace) {
         if (player.getItemInHand(hand).sameItem(Items.BUCKET.getDefaultInstance())) {
-            player.setItemInHand(hand, Items.WATER_BUCKET.getDefaultInstance());
+            if (player.getItemInHand(hand).getCount() == 1) {
+                player.setItemInHand(hand, Items.WATER_BUCKET.getDefaultInstance());
+            }
         }
         return ActionResultType.CONSUME;
     }
