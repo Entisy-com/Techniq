@@ -16,6 +16,9 @@ public class Techniq {
     public static final String MOD_ID = "techniq";
 
     public Techniq() {
+
+        SimpleConfig config = new SimpleConfig("main");
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModBlocks.BLOCKS.register(bus);
