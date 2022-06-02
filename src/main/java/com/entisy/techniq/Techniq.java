@@ -1,6 +1,7 @@
 package com.entisy.techniq;
 
 import com.entisy.techniq.core.init.*;
+import com.entisy.techniq.core.util.entisy.SimpleConfig;
 import net.minecraft.fluid.Fluid;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;

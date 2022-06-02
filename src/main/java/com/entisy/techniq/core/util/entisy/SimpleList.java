@@ -50,6 +50,10 @@ public class SimpleList<T>
     	list.removeAll(Arrays.asList(objects)); 
     }
 
+    public void remove(int index) {
+        list.remove(index);
+    }
+
     public boolean contains(T object)
     {
         return list.contains(object);

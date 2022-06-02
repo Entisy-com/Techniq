@@ -53,11 +53,16 @@ public class SimpleMap<K, V> {
         values.append(value);
     }
 
-    public int size() {
-        return keys.size() == values.size() ? keys.size() | values.size() : 0;
+    public void remove (K key) {
+        for (int i = 0; i < keys.size(); i++) {
+            if (keys.get(i).equals(key)) {
+                keys.remove(i);
+                values.remove(i);
+            }
+        }
     }
 
-    public static SimpleMap createNew() {
-        return new SimpleMap<>();
+    public int size() {
+        return keys.size() == values.size() ? keys.size() : 0;
     }
 }
