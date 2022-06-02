@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SimpleConfig {
-    private SimpleMap<String, String> map = new SimpleMap<>();
+    private SimpleMap<String, Object> map = new SimpleMap<>();
     public static final SimpleConfig EMPTY = new SimpleConfig();
     private static JsonObject json = new JsonObject();
     private File file;
@@ -31,11 +31,15 @@ public class SimpleConfig {
 
     private SimpleConfig() {}
 
-    public String get(String key) {
-        return json.get(key).getAsString() != null ? json.get(key).getAsString() : "VALUE TO KEY " + key + " IS NULL";
+    public Object get(String key) {
+        return json.get(key).getAsString() != null ? json.get(key) : "VALUE TO KEY " + key + " IS NULL";
     }
 
-    public void add(String key, String value) {
+    public int getInt(String key) {
+        return Integer.parseInt(json.get(key).toString().replace("\"", ""));
+    }
+
+    public void add(String key, Object value) {
         if (!map.getKeys().contains(key)) {
             map.append(key, value);
             addToJSON(key, value);
@@ -47,9 +51,9 @@ public class SimpleConfig {
         removeFromJSON(key);
     }
 
-    private void addToJSON(String key, String value) {
+    private void addToJSON(String key, Object value) {
         for (int i = 0; i < map.size(); i++) {
-            json.addProperty(key, value);
+            json.addProperty(key, value.toString());
         }
         FileHelper.writeContent(file, json.toString());
     }

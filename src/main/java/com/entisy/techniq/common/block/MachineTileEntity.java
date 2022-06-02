@@ -4,6 +4,7 @@ import com.entisy.techniq.core.capabilities.energy.EnergyStorageImpl;
 import com.entisy.techniq.core.capabilities.fluid.CapabilityFluid;
 import com.entisy.techniq.core.capabilities.fluid.FluidStorageImpl;
 import com.entisy.techniq.core.capabilities.fluid.IFluidStorage;
+import com.entisy.techniq.core.util.entisy.SimpleConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
@@ -37,8 +38,10 @@ import java.util.stream.Collectors;
 
 public class MachineTileEntity extends TileEntity {
 
-    public static final int maxEnergy = 10000;
-    public static final int maxFluid = 10000;
+    private static SimpleConfig config = SimpleConfig.getConfig("main");
+
+    public static final int maxEnergy = config.getInt("machine.maxEnergy");
+    public static final int maxFluid = config.getInt("machine.maxFluid");
     public int maxEnergyReceive = 0;
     public int maxEnergyExtract = 0;
     public static int slots = 0;
