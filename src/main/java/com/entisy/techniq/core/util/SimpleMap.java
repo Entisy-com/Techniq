@@ -3,8 +3,8 @@ package com.entisy.techniq.core.util;
 import java.util.List;
 
 public class SimpleMap<K, V> {
-    SimpleList<K> keys = SimpleList.createNew();
-    SimpleList<V> values = SimpleList.createNew();
+    SimpleList<K> keys = new SimpleList<>();
+    SimpleList<V> values = new SimpleList<>();
 
     public K keyFromInt(int index) {
         return keys.get(index);

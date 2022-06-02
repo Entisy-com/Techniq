@@ -9,21 +9,28 @@ import java.util.function.Supplier;
 
 public class SimpleList<T>
 {
-	private final List<T> list = new ArrayList<>();
+
+    private static SimpleList instance;
+	private List<T> list;
+    public static final SimpleList EMPTY = new SimpleList();
+
+    public SimpleList() {
+        list = new ArrayList<>();
+        instance = this;
+    }
 
     @SuppressWarnings("unchecked")
-	public SimpleList(T... objects)
-    {
+	public SimpleList(T... objects) {
+        this();
         list.addAll(Arrays.asList(objects));
     }
 
-    public SimpleList(Supplier<T> sup)
-    {
+    public SimpleList(Supplier<T> sup) {
         //TODO:
     }
 
     @SuppressWarnings("unchecked")
-	public void append(T... objects) 
+	public void append(T... objects)
     {
         list.addAll(Arrays.asList(objects));
     }
@@ -76,7 +83,8 @@ public class SimpleList<T>
 		}
 	}
 
-    public static SimpleList createNew() {
-        return new SimpleList<>();
+    public static SimpleList convert(List o) {
+        o.forEach(l -> instance.list.add(l));
+        return instance;
     }
 }

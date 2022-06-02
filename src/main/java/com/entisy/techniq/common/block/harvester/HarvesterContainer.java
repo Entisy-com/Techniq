@@ -1,6 +1,7 @@
 package com.entisy.techniq.common.block.harvester;
 
 import com.entisy.techniq.common.slots.OutputSlot;
+import com.entisy.techniq.common.slots.UpgradeSlot;
 import com.entisy.techniq.core.init.ModBlocks;
 import com.entisy.techniq.core.init.ModContainerTypes;
 import com.entisy.techniq.core.util.FunctionalIntReferenceHolder;
@@ -42,6 +43,9 @@ public class HarvesterContainer extends Container {
         slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 3, 62, 45)));
         slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 4, 80, 45)));
         slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 5, 98, 45)));
+
+        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 6, 9, 9)));
+        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 9)));
 
         // inventory
         for (int row = 0; row < 3; row++) {
@@ -87,7 +91,7 @@ public class HarvesterContainer extends Container {
             ItemStack itemstack1 = slot.getItem();
 
             int slots = 6;
-            int invSize = slots + 27;
+            int invSize = slots + 27 + 2;
             int hotbar = invSize + 9;
 
             itemstack = itemstack1.copy();
@@ -104,7 +108,9 @@ public class HarvesterContainer extends Container {
                 } else if (index >= invSize && index < hotbar && !this.moveItemStackTo(itemstack1, 0, 6, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemstack1, slots, hotbar, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, 5, 7, false)) {
+                return ItemStack.EMPTY;
+            }else if (!this.moveItemStackTo(itemstack1, slots, hotbar, false)) {
                 return ItemStack.EMPTY;
             }
             if (itemstack1.isEmpty()) {
