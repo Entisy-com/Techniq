@@ -40,7 +40,7 @@ public class ModBlocks {
             Techniq.MOD_ID);
 
     /**
-     *  TEMP
+     * TEMP
      */
     public static final RegistryObject<SimpleBlock> INFINITE_WATER_SOURCE = register("infinite_water_source", WaterSourceBlock::new);
 
@@ -115,40 +115,40 @@ public class ModBlocks {
      * MACHINE
      */
     public static final RegistryObject<ComplexMachineBlock> BLOCK_BREAKER = register("block_breaker",
-            () -> new BlockBreakerBlock());
+            BlockBreakerBlock::new);
 
     public static final RegistryObject<SemiComplexMachineBlock> CHARGER = register("charger",
-            () -> new ChargerBlock());
+            ChargerBlock::new);
 
     public static final RegistryObject<ComplexMachineBlock> BLOCK_PLACER = register("block_placer",
-            () -> new BlockPlacerBlock());
+            BlockPlacerBlock::new);
 
     public static final RegistryObject<SimpleMachineBlock> HARVESTER = register("harvester",
-            () -> new HarvesterBlock());
+            HarvesterBlock::new);
 
     public static final RegistryObject<ComplexMachineBlock> METAL_PRESS = register("metal_press",
-            () -> new MetalPressBlock());
+            MetalPressBlock::new);
 
     public static final RegistryObject<ComplexMachineBlock> REFINERY = register("refinery",
-            () -> new RefineryBlock());
+            RefineryBlock::new);
 
     public static final RegistryObject<ComplexMachineBlock> ELECTRICAL_FURNACE = register("electrical_furnace",
-            () -> new ElectricalFurnaceBlock());
+            ElectricalFurnaceBlock::new);
 
     public static final RegistryObject<ComplexMachineBlock> ALLOY_SMELTER = register("alloy_smelter",
-            () -> new AlloySmelterBlock());
+            AlloySmelterBlock::new);
 
     public static final RegistryObject<SemiComplexMachineBlock> BATTERY = register("battery_block",
-            () -> new BatteryBlock());
+            BatteryBlock::new);
 
     public static final RegistryObject<ComplexMachineBlock> FURNACE_GENERATOR = register("furnace_generator",
-            () -> new FurnaceGeneratorBlock());
+            FurnaceGeneratorBlock::new);
 
     public static final RegistryObject<SemiComplexMachineBlock> SIMPLE_ORE_MINER = register("simple_ore_miner",
-            () -> new SimpleOreMinerBlock());
+            SimpleOreMinerBlock::new);
 
     public static final RegistryObject<SemiComplexMachineBlock> ADVANCED_ORE_MINER = register("advanced_ore_miner",
-            () -> new AdvancedOreMinerBlock());
+            AdvancedOreMinerBlock::new);
 
 
     public static final RegistryObject<SimpleBlock> RAINBOW_WOOL = register("rainbow_wool",

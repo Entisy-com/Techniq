@@ -2,7 +2,6 @@ package com.entisy.techniq.common.block.refinery;
 
 import com.entisy.techniq.Techniq;
 import com.entisy.techniq.common.block.MachineTileEntity;
-import com.entisy.techniq.common.block.alloySmelter.AlloySmelterTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -14,7 +13,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.awt.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @OnlyIn(Dist.CLIENT)
 public class RefineryScreen extends ContainerScreen<RefineryContainer> {
@@ -50,8 +48,7 @@ public class RefineryScreen extends ContainerScreen<RefineryContainer> {
 
         // draw fluid bar
         int currentFluid = getMenu().currentFluid.get();
-        int pi = 0;
-        if (currentFluid != 0) pi = currentFluid * 50 / getMenu().tileEntity.getMaxFluidStored();
+        int pi = currentFluid != 0 ? currentFluid * 50 / MachineTileEntity.maxFluid : 0;
         blit(stack, getGuiLeft() + 10, getGuiTop() + (50 - pi) + 18, 188, (50 - pi), 12, 50);
 
         // draw progress bar/arrow
@@ -95,11 +92,8 @@ public class RefineryScreen extends ContainerScreen<RefineryContainer> {
             if (mouseY >= getGuiTop() + 18 && mouseY < getGuiTop() + 18 + 50) {
 
                 // rendering the amount of fluid stored e.g. 5000/25000
-                int current = 0;
-                int currentFluid = getMenu().currentFluid.get();
-                if (getMenu().tileEntity.getMaxFluidStored() != 0) current = getMenu().tileEntity.currentFluid;
-                if (currentFluid != 0) this.renderTooltip(matrixStack,
-                        new StringTextComponent(current + "/" + getMenu().tileEntity.getMaxFluidStored()), mouseX, mouseY);
+                int current = getMenu().currentFluid.get();
+                this.renderTooltip(matrixStack, new StringTextComponent(current + "/" + MachineTileEntity.maxFluid), mouseX, mouseY);
             }
         }
         if (mouseX >= getGuiLeft() + 73 && mouseX < getGuiLeft() + 73 + 4) {

@@ -35,6 +35,7 @@ import java.util.stream.Collectors;
 public class MachineTileEntity extends TileEntity {
 
     public static final int maxEnergy = 10000;
+    public static final int maxFluid = 10000;
     public int maxEnergyReceive = 0;
     public int maxEnergyExtract = 0;
     public static int slots = 0;
