@@ -44,8 +44,8 @@ public class HarvesterContainer extends Container {
         slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 4, 80, 45)));
         slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 5, 98, 45)));
 
-        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 6, 9, 9)));
-        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 9)));
+        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 6, 9, 27)));
+        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 27)));
 
         // inventory
         for (int row = 0; row < 3; row++) {
