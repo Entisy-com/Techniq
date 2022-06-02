@@ -1,8 +1,6 @@
 package com.entisy.techniq.core.util.entisy;
 
-import com.entisy.techniq.core.util.entisy.SimpleList;
-
-public class Triple<A, B, C> {
+public class Triplet<A, B, C> {
 
     private SimpleList<A> as = new SimpleList<>();
     private SimpleList<B> bs = new SimpleList<>();

@@ -9,7 +9,7 @@ import com.entisy.techniq.core.init.ModTileEntityTypes;
 import com.entisy.techniq.core.util.entisy.Pair;
 import com.entisy.techniq.core.util.entisy.SimpleList;
 import com.entisy.techniq.core.util.entisy.SimpleMap;
-import com.entisy.techniq.core.util.entisy.Triple;
+import com.entisy.techniq.core.util.entisy.Triplet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,9 +31,9 @@ import java.util.Random;
 public class AdvancedOreMinerTileEntity extends MachineTileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyHandler {
 
     //             block, Uses, MiningTime
-    private Triple<Block, Integer, Float> triple = new Triple<>();
+    private Triplet<Block, Integer, Float> triple = new Triplet<>();
     private SimpleList<Block> minableBlocks = new SimpleList<>();
-    private Triple<Block, Pair<Item, Integer>, Pair<Item, Integer>> outputs = new Triple<>();
+    private Triplet<Block, Pair<Item, Integer>, Pair<Item, Integer>> outputs = new Triplet<>();
     private int uses = 0;
 
     public AdvancedOreMinerTileEntity() {
