@@ -10,7 +10,7 @@ import com.entisy.techniq.common.slots.UpgradeSlot;
 import com.entisy.techniq.core.capabilities.energy.EnergyStorageImpl;
 import com.entisy.techniq.core.capabilities.energy.IEnergyHandler;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
-import com.entisy.techniq.core.util.SimpleList;
+import com.entisy.techniq.core.util.entisy.SimpleList;
 import net.minecraft.block.BeetrootBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;

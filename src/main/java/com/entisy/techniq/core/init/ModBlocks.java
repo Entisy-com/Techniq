@@ -19,7 +19,7 @@ import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerBlo
 import com.entisy.techniq.common.block.refinery.RefineryBlock;
 import com.entisy.techniq.common.block.waterSource.WaterSourceBlock;
 import com.entisy.techniq.core.tab.TechniqTab;
-import com.entisy.techniq.core.util.SimpleList;
+import com.entisy.techniq.core.util.entisy.SimpleList;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

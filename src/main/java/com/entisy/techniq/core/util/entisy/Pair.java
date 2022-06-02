@@ -1,4 +1,4 @@
-package com.entisy.techniq.core.util;
+package com.entisy.techniq.core.util.entisy;
 
 public class Pair<K, V> {
 

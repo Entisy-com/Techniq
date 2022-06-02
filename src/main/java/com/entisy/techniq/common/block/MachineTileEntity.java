@@ -1,6 +1,9 @@
 package com.entisy.techniq.common.block;
 
 import com.entisy.techniq.core.capabilities.energy.EnergyStorageImpl;
+import com.entisy.techniq.core.capabilities.fluid.CapabilityFluid;
+import com.entisy.techniq.core.capabilities.fluid.FluidStorageImpl;
+import com.entisy.techniq.core.capabilities.fluid.IFluidStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
@@ -41,19 +44,24 @@ public class MachineTileEntity extends TileEntity {
     public static int slots = 0;
     public final EnergyStorageImpl energyStorage;
     public final LazyOptional<IEnergyStorage> energy;
+    public final FluidStorageImpl fluidStorage;
+    public final LazyOptional<IFluidStorage> fluid;
     public ITextComponent name;
     public int currentSmeltTime = 0;
     public MachineBlockItemHandler inventory;
     public int currentEnergy = 0;
+    public int currentFluid = 0;
 
     public MachineTileEntity(int slots, int maxReceive, int maxExtract, TileEntityType<?> type) {
         super(type);
-        this.slots = slots;
+        MachineTileEntity.slots = slots;
         this.maxEnergyReceive = maxReceive;
         this.maxEnergyExtract = maxExtract;
         inventory = new MachineBlockItemHandler(slots);
         energyStorage = createEnergy(maxEnergy);
         energy = LazyOptional.of(() -> energyStorage);
+        fluidStorage = createFluid(maxFluid);
+        fluid = LazyOptional.of(() -> fluidStorage);
     }
 
     @Override
@@ -68,6 +76,8 @@ public class MachineTileEntity extends TileEntity {
         currentSmeltTime = nbt.getInt("CurrentSmeltTime");
         currentEnergy = nbt.getInt("EnergyStored");
         energyStorage.setEnergyDirectly(currentEnergy);
+        currentFluid = nbt.getInt("FluidStored");
+        fluidStorage.setFluidDirectly(currentFluid);
     }
 
     @Override
@@ -80,6 +90,9 @@ public class MachineTileEntity extends TileEntity {
         nbt.putInt("CurrentSmeltTime", currentSmeltTime);
         energy.ifPresent(iEnergyStorage -> {
             nbt.putInt("EnergyStored", iEnergyStorage.getEnergyStored());
+        });
+        fluid.ifPresent(iFluidStorage -> {
+            nbt.putInt("FluidStored", iFluidStorage.getFluidStored());
         });
         return nbt;
     }
@@ -107,6 +120,10 @@ public class MachineTileEntity extends TileEntity {
         return new EnergyStorageImpl(capacity, maxEnergyReceive, maxEnergyExtract, this);
     }
 
+    private FluidStorageImpl createFluid(int capacity) {
+        return new FluidStorageImpl(capacity, maxEnergyReceive, maxEnergyExtract, this);
+    }
+
     @Override
     public void onDataPacket(NetworkManager manager, SUpdateTileEntityPacket packet) {
         deserializeNBT(packet.getTag());
@@ -121,6 +138,8 @@ public class MachineTileEntity extends TileEntity {
     public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction side) {
         if (capability == CapabilityEnergy.ENERGY) {
             return energy.cast();
+        } else if (capability == CapabilityFluid.FLUID) {
+            return fluid.cast();
         }
         return super.getCapability(capability, side);
     }

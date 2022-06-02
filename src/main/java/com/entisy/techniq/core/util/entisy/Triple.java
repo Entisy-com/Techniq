@@ -1,4 +1,6 @@
-package com.entisy.techniq.core.util;
+package com.entisy.techniq.core.util.entisy;
+
+import com.entisy.techniq.core.util.entisy.SimpleList;
 
 public class Triple<A, B, C> {
 

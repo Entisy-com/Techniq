@@ -1,5 +1,6 @@
-package com.entisy.techniq.core.util;
+package com.entisy.techniq.core.util.entisy;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,14 @@ public class SimpleList<T>
 	public SimpleList(T... objects) {
         this();
         list.addAll(Arrays.asList(objects));
+    }
+
+    public static SimpleList<String> createStringList(File file, char splitCharacter) {
+        return new SimpleList<>(FileHelper.readContent(file).split(splitCharacter + ""));
+    }
+
+    public static SimpleList<String> createStringList(String... s) {
+        return new SimpleList<>(s);
     }
 
     public SimpleList(Supplier<T> sup) {

@@ -8,10 +8,8 @@ import com.entisy.techniq.core.capabilities.energy.IEnergyHandler;
 import com.entisy.techniq.core.capabilities.fluid.CapabilityFluid;
 import com.entisy.techniq.core.capabilities.fluid.FluidStorageImpl;
 import com.entisy.techniq.core.capabilities.fluid.IFluidHandler;
-import com.entisy.techniq.core.capabilities.fluid.IFluidStorage;
 import com.entisy.techniq.core.init.ModItems;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
-import com.entisy.techniq.core.util.Pair;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -19,30 +17,25 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fluids.FluidStack;
 
 public class RefineryTileEntity extends MachineTileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyHandler, IFluidHandler {
 
-    public static final int maxFluid = 10000;
-    private final FluidStorageImpl fluidStorage;
-    private final LazyOptional<IFluidStorage> fluid;
     public int currentFluid = 0;
     public int bucketProgress = 0;
+    public FluidStack type = FluidStack.EMPTY; // TODO: FluidType to make recipes for multiple fluids
 
     public RefineryTileEntity() {
         super(3, 200, 0, ModTileEntityTypes.REFINERY_TILE_ENTITY.get());
-        fluidStorage = createFluid(maxFluid);
-        fluid = LazyOptional.of(() -> fluidStorage);
     }
 
     @Override
@@ -121,22 +114,6 @@ public class RefineryTileEntity extends MachineTileEntity implements ITickableTi
         }
     }
 
-    @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
-        currentFluid = nbt.getInt("FluidStored");
-        fluidStorage.setFluidDirectly(currentFluid);
-    }
-
-    @Override
-    public CompoundNBT save(CompoundNBT nbt) {
-        super.save(nbt);
-        fluid.ifPresent(iFluidStorage -> {
-            nbt.putInt("FluidStored", iFluidStorage.getFluidStored());
-        });
-        return nbt;
-    }
-
     public void setCustomName(ITextComponent name) {
         this.name = name;
     }
@@ -147,6 +124,19 @@ public class RefineryTileEntity extends MachineTileEntity implements ITickableTi
 
     public ITextComponent getDefaultName() {
         return new TranslationTextComponent("container." + Techniq.MOD_ID + ".refinery");
+    }
+
+    @Override
+    public CompoundNBT save(CompoundNBT nbt) {
+        super.save(nbt);
+
+        return nbt;
+    }
+
+    @Override
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+
     }
 
     @Override

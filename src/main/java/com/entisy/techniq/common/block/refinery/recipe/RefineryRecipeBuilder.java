@@ -1,15 +1,10 @@
-package com.entisy.techniq.common.block.alloySmelter.recipe;
-
-import java.util.function.Consumer;
-
-import javax.annotation.Nullable;
+package com.entisy.techniq.common.block.refinery.recipe;
 
 import com.entisy.techniq.Techniq;
 import com.entisy.techniq.core.init.ModRecipes;
 import com.entisy.techniq.core.util.entisy.SimpleList;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.ICriterionInstance;
@@ -23,7 +18,10 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
-public class AlloySmelterRecipeBuilder {
+import javax.annotation.Nullable;
+import java.util.function.Consumer;
+
+public class RefineryRecipeBuilder {
 
 	private final Item result;
 	private final int count;
@@ -33,25 +31,25 @@ public class AlloySmelterRecipeBuilder {
 	private static int requiredEnergy = 200;
 	private static int smeltTime = 200;
 
-	public AlloySmelterRecipeBuilder(IItemProvider provider, int count) {
+	public RefineryRecipeBuilder(IItemProvider provider, int count) {
 		this.result = provider.asItem();
 		this.count = count;
 	}
 
-	public static AlloySmelterRecipeBuilder smelting(IItemProvider provider) {
-		return new AlloySmelterRecipeBuilder(provider, 1);
+	public static RefineryRecipeBuilder smelting(IItemProvider provider) {
+		return new RefineryRecipeBuilder(provider, 1);
 	}
 
-	public static AlloySmelterRecipeBuilder smelting(IItemProvider provider, int count) {
-		return new AlloySmelterRecipeBuilder(provider, count);
+	public static RefineryRecipeBuilder smelting(IItemProvider provider, int count) {
+		return new RefineryRecipeBuilder(provider, count);
 	}
 
-	public AlloySmelterRecipeBuilder requiredEnergy(int requiredEnergy) {
+	public RefineryRecipeBuilder requiredEnergy(int requiredEnergy) {
 		this.requiredEnergy = requiredEnergy;
 		return this;
 	}
 
-	public AlloySmelterRecipeBuilder smeltTime(int smeltTime) {
+	public RefineryRecipeBuilder smeltTime(int smeltTime) {
 		this.smeltTime = smeltTime;
 		return this;
 	}
@@ -60,20 +58,20 @@ public class AlloySmelterRecipeBuilder {
 //		return this.requires(Ingredient.of(tag));
 //	}
 
-	public AlloySmelterRecipeBuilder requires(IItemProvider item1, IItemProvider item2) {
+	public RefineryRecipeBuilder requires(IItemProvider item1, IItemProvider item2) {
 		return this.requires(item1, 1, item2, 1);
 	}
 
-	public AlloySmelterRecipeBuilder requires(IItemProvider item1, int count1, IItemProvider item2, int count2) {
+	public RefineryRecipeBuilder requires(IItemProvider item1, int count1, IItemProvider item2, int count2) {
 		this.requires(Ingredient.of(item1), count1, Ingredient.of(item2), count2);
 		return this;
 	}
 
-	public AlloySmelterRecipeBuilder requires(Ingredient item1, Ingredient item2) {
+	public RefineryRecipeBuilder requires(Ingredient item1, Ingredient item2) {
 		return this.requires(item1, 1, item2, 1);
 	}
 
-	public AlloySmelterRecipeBuilder requires(Ingredient item1, int count1, Ingredient item2, int count2) {
+	public RefineryRecipeBuilder requires(Ingredient item1, int count1, Ingredient item2, int count2) {
 		item1.getItems()[0].setCount(count1);
 		item2.getItems()[0].setCount(count2);
 		ingredients.append(item1);
@@ -82,12 +80,12 @@ public class AlloySmelterRecipeBuilder {
 		return this;
 	}
 
-	public AlloySmelterRecipeBuilder unlockedBy(String p_200483_1_, ICriterionInstance p_200483_2_) {
+	public RefineryRecipeBuilder unlockedBy(String p_200483_1_, ICriterionInstance p_200483_2_) {
 		this.advancement.addCriterion(p_200483_1_, p_200483_2_);
 		return this;
 	}
 
-	public AlloySmelterRecipeBuilder group(String p_200490_1_) {
+	public RefineryRecipeBuilder group(String p_200490_1_) {
 		this.group = p_200490_1_;
 		return this;
 	}
@@ -112,7 +110,7 @@ public class AlloySmelterRecipeBuilder {
 		this.advancement.parent(new ResourceLocation("recipes/root"))
 				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
 				.rewards(AdvancementRewards.Builder.recipe(id)).requirements(IRequirementsStrategy.OR);
-		consumer.accept(new AlloySmelterRecipeBuilder.Result(id, this.result, this.count,
+		consumer.accept(new Result(id, this.result, this.count,
 				this.group == null ? "" : this.group, this.ingredients, this.advancement,
 				new ResourceLocation(id.getNamespace(),
 						"recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
