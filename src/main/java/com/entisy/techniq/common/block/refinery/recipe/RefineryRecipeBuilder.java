@@ -2,7 +2,7 @@ package com.entisy.techniq.common.block.refinery.recipe;
 
 import com.entisy.techniq.Techniq;
 import com.entisy.techniq.core.init.ModRecipes;
-import com.entisy.techniq.core.util.entisy.SimpleList;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;

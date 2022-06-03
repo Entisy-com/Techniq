@@ -1,4 +1,4 @@
-package com.entisy.techniq.core.util.entisy;
+package com.entisy.techniq.core.util.entisy.betterLists;
 
 import java.util.List;
 
@@ -32,8 +32,8 @@ public class SimpleMap<K, V> {
         return null;
     }
 
-    public List<K> getKeys() {
-        return keys.list();
+    public SimpleList<K> getKeys() {
+        return keys;
     }
 
     public K[] getKeyArray() {
@@ -44,8 +44,8 @@ public class SimpleMap<K, V> {
         return values.get();
     }
 
-    public List<V> getValues() {
-        return values.list();
+    public SimpleList<V> getValues() {
+        return values;
     }
 
     public void append(K key, V value) {

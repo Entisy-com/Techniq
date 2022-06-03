@@ -1,7 +1,7 @@
 package com.entisy.techniq.core.init;
 
 import com.entisy.techniq.Techniq;
-import com.entisy.techniq.core.util.entisy.SimpleList;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.fluid.FlowingFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.ResourceLocation;

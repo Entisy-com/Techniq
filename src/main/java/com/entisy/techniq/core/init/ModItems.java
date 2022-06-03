@@ -7,7 +7,7 @@ import com.entisy.techniq.common.item.upgrades.SpeedUpgradeItem;
 import com.entisy.techniq.common.item.upgrades.UpgradeItem;
 import com.entisy.techniq.core.tab.TechniqTab;
 
-import com.entisy.techniq.core.util.entisy.SimpleList;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;

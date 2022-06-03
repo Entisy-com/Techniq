@@ -19,8 +19,8 @@ public class AlloySmelterRecipe implements IAlloySmelterRecipe {
     private final Ingredient input1, input2;
     private final Map<Ingredient, Integer> ingredients = new LinkedHashMap<>();
     private final ItemStack output;
-    private int requiredEnergy = 200;
-    private int smeltTime = 200;
+    private int requiredEnergy;
+    private int smeltTime;
 
     public AlloySmelterRecipe(ResourceLocation id, Ingredient input1, Ingredient input2, ItemStack output, int requiredEnergy, int smeltTime) {
         this.id = id;

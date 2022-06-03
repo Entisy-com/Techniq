@@ -7,7 +7,7 @@ import com.entisy.techniq.core.capabilities.energy.EnergyStorageImpl;
 import com.entisy.techniq.core.capabilities.energy.IEnergyHandler;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
 import com.entisy.techniq.core.util.EnergyUtils;
-import com.entisy.techniq.core.util.entisy.SimpleMap;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleMap;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

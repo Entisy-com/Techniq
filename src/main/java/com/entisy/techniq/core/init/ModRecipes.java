@@ -4,6 +4,9 @@ import com.entisy.techniq.Techniq;
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipe;
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipeSerializer;
 import com.entisy.techniq.common.block.alloySmelter.recipe.IAlloySmelterRecipe;
+import com.entisy.techniq.common.block.crusher.recipe.CrusherRecipe;
+import com.entisy.techniq.common.block.crusher.recipe.CrusherRecipeSerializer;
+import com.entisy.techniq.common.block.crusher.recipe.ICrusherRecipe;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipe;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipeSerializer;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.IElectricalFurnaceRecipe;
@@ -33,6 +36,11 @@ public class ModRecipes {
     public static final IRecipeSerializer<AlloySmelterRecipe> ALLOY_SMELTER_RECIPE_SERIALIZER = new AlloySmelterRecipeSerializer();
     public static final IRecipeType<IAlloySmelterRecipe> ALLOY_SMELTER_TYPE = registerType(
             IAlloySmelterRecipe.RECIPE_TYPE_ID);
+
+    // CRUSHER
+    public static final IRecipeSerializer<CrusherRecipe> CRUSHER_RECIPE_SERIALIZER = new CrusherRecipeSerializer();
+    public static final IRecipeType<ICrusherRecipe> CRUSHER_TYPE = registerType(
+            ICrusherRecipe.RECIPE_TYPE_ID);
 
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister
             .create(ForgeRegistries.RECIPE_SERIALIZERS, Techniq.MOD_ID);

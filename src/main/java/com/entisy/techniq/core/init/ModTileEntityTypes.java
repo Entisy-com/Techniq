@@ -9,6 +9,7 @@ import com.entisy.techniq.common.block.cable.energyCable.EnergyCableTileEntity;
 import com.entisy.techniq.common.block.cable.fluidCable.FluidCableTileEntity;
 import com.entisy.techniq.common.block.cable.itemCable.ItemCableTileEntity;
 import com.entisy.techniq.common.block.charger.ChargerTileEntity;
+import com.entisy.techniq.common.block.crusher.CrusherTileEntity;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceTileEntity;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorTileEntity;
 import com.entisy.techniq.common.block.harvester.HarvesterTileEntity;
@@ -29,6 +30,10 @@ public class ModTileEntityTypes {
     public static final RegistryObject<TileEntityType<BlockBreakerTileEntity>> BLOCK_BREAKER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPES
             .register("block_breaker", () -> TileEntityType.Builder
                     .of(BlockBreakerTileEntity::new, ModBlocks.BLOCK_BREAKER.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<CrusherTileEntity>> CRUSHER_TILE_ENTITY = TILE_ENTITY_TYPES
+            .register("crusher", () -> TileEntityType.Builder
+                    .of(CrusherTileEntity::new, ModBlocks.CRUSHER.get()).build(null));
 
     public static final RegistryObject<TileEntityType<BlockPlacerTileEntity>> BLOCK_PLACER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPES
             .register("block_placer", () -> TileEntityType.Builder

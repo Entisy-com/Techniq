@@ -10,6 +10,7 @@ import com.entisy.techniq.common.block.cable.energyCable.EnergyCableBlock;
 import com.entisy.techniq.common.block.cable.fluidCable.FluidCableBlock;
 import com.entisy.techniq.common.block.cable.itemCable.ItemCableBlock;
 import com.entisy.techniq.common.block.charger.ChargerBlock;
+import com.entisy.techniq.common.block.crusher.CrusherBlock;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceBlock;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorBlock;
 import com.entisy.techniq.common.block.harvester.HarvesterBlock;
@@ -19,7 +20,7 @@ import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerBlo
 import com.entisy.techniq.common.block.refinery.RefineryBlock;
 import com.entisy.techniq.common.block.waterSource.WaterSourceBlock;
 import com.entisy.techniq.core.tab.TechniqTab;
-import com.entisy.techniq.core.util.entisy.SimpleList;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -116,6 +117,9 @@ public class ModBlocks {
      */
     public static final RegistryObject<ComplexMachineBlock> BLOCK_BREAKER = register("block_breaker",
             BlockBreakerBlock::new);
+
+    public static final RegistryObject<SimpleMachineBlock> CRUSHER = register("crusher",
+            CrusherBlock::new);
 
     public static final RegistryObject<SemiComplexMachineBlock> CHARGER = register("charger",
             ChargerBlock::new);

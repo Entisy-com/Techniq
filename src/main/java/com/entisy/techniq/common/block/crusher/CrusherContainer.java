@@ -1,11 +1,9 @@
-package com.entisy.techniq.common.block.harvester;
+package com.entisy.techniq.common.block.crusher;
 
 import com.entisy.techniq.common.slots.OutputSlot;
-import com.entisy.techniq.common.slots.UpgradeSlot;
 import com.entisy.techniq.core.init.ModBlocks;
 import com.entisy.techniq.core.init.ModContainerTypes;
 import com.entisy.techniq.core.util.FunctionalIntReferenceHolder;
-import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -14,22 +12,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.Objects;
 
-public class HarvesterContainer extends Container {
+public class CrusherContainer extends Container {
 
-    public final HarvesterTileEntity tileEntity;
-    private static SimpleList<Slot> slotList = new SimpleList<>();
+    public final CrusherTileEntity tileEntity;
     private final IWorldPosCallable canInteractWithCallable;
     public FunctionalIntReferenceHolder currentSmeltTime;
     public FunctionalIntReferenceHolder currentEnergy;
 
-    public HarvesterContainer(final int id, final PlayerInventory inv, final HarvesterTileEntity tileEntity) {
-        super(ModContainerTypes.HARVESTER_CONTAINER_TYPE.get(), id);
+    public CrusherContainer(final int id, final PlayerInventory inv, final CrusherTileEntity tileEntity) {
+        super(ModContainerTypes.CRUSHER_CONTAINER_TYPE.get(), id);
         this.tileEntity = tileEntity;
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
@@ -37,15 +37,8 @@ public class HarvesterContainer extends Container {
         final int startX = 8;
 
         // furnace
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 0, 62, 27)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 1, 80, 27)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 2, 98, 27)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 3, 62, 45)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 4, 80, 45)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 5, 98, 45)));
-
-        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 6, 9, 27)));
-        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 27)));
+        addSlot(new SlotItemHandler(tileEntity.getInventory(), 0, 56, 35));
+        addSlot(new OutputSlot(tileEntity.getInventory(), 1, 116, 35));
 
         // inventory
         for (int row = 0; row < 3; row++) {
@@ -64,23 +57,23 @@ public class HarvesterContainer extends Container {
         addDataSlot(currentEnergy = new FunctionalIntReferenceHolder(() -> tileEntity.currentEnergy, value -> tileEntity.currentEnergy = value));
     }
 
-    public HarvesterContainer(final int id, final PlayerInventory inv, final PacketBuffer buffer) {
+    public CrusherContainer(final int id, final PlayerInventory inv, final PacketBuffer buffer) {
         this(id, inv, getTileEntity(inv, buffer));
     }
 
-    private static HarvesterTileEntity getTileEntity(PlayerInventory inv, PacketBuffer buffer) {
+    private static CrusherTileEntity getTileEntity(PlayerInventory inv, PacketBuffer buffer) {
         Objects.requireNonNull(inv, "Inventory cannot be null");
         Objects.requireNonNull(buffer, "PacketBuffer cannot be null");
         final TileEntity tileEntity = inv.player.level.getBlockEntity(buffer.readBlockPos());
-        if (tileEntity instanceof HarvesterTileEntity) {
-            return (HarvesterTileEntity) tileEntity;
+        if (tileEntity instanceof CrusherTileEntity) {
+            return (CrusherTileEntity) tileEntity;
         }
         throw new IllegalStateException("TileEntity is not correct!");
     }
 
     @Override
     public boolean stillValid(PlayerEntity player) {
-        return stillValid(canInteractWithCallable, player, ModBlocks.HARVESTER.get());
+        return stillValid(canInteractWithCallable, player, ModBlocks.CRUSHER.get());
     }
 
     @Override
@@ -89,28 +82,22 @@ public class HarvesterContainer extends Container {
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
-
-            int slots = 6;
-            int invSize = slots + 27 + 2;
-            int hotbar = invSize + 9;
-
             itemstack = itemstack1.copy();
-            if (index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5) {
-                if (!this.moveItemStackTo(itemstack1, slots, hotbar, true)) {
+
+            final int inventorySize = 2;
+            final int playerInventoryEnd = inventorySize + 27;
+            final int playerHotbarEnd = playerInventoryEnd + 9;
+
+            if (index == 1) {
+                if (!this.moveItemStackTo(itemstack1, inventorySize, playerHotbarEnd, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onQuickCraft(itemstack1, itemstack);
-            } else if (index != 0 && index != 1 && index != 2 && index != 3 && index != 4 && index != 5) {
-                if (index >= slots && index < invSize) {
-                    if (!this.moveItemStackTo(itemstack1, 0, 6, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index >= invSize && index < hotbar && !this.moveItemStackTo(itemstack1, 0, 6, false)) {
+            } else if (index != 0) {
+                if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemstack1, 5, 7, false)) {
-                return ItemStack.EMPTY;
-            }else if (!this.moveItemStackTo(itemstack1, slots, hotbar, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, inventorySize, playerHotbarEnd, false)) {
                 return ItemStack.EMPTY;
             }
             if (itemstack1.isEmpty()) {
@@ -126,11 +113,12 @@ public class HarvesterContainer extends Container {
         return itemstack;
     }
 
-    public LazyOptional<IEnergyStorage> getCapabilityFromTE() {
-        return this.tileEntity.getCapability(CapabilityEnergy.ENERGY);
+    @OnlyIn(Dist.CLIENT)
+    public int getSmeltProgressionScaled() {
+        return currentSmeltTime.get() != 0 && tileEntity.getMaxSmeltTime() != 0 ? currentSmeltTime.get() * 24 / tileEntity.getMaxSmeltTime() : 0;
     }
 
-    public static SimpleList<Slot> getSlots() {
-        return slotList;
+    public LazyOptional<IEnergyStorage> getCapabilityFromTE() {
+        return this.tileEntity.getCapability(CapabilityEnergy.ENERGY);
     }
 }

@@ -1,4 +1,4 @@
-package com.entisy.techniq.core.util.entisy;
+package com.entisy.techniq.core.util.entisy.betterLists;
 
 public class Triplet<A, B, C> {
 

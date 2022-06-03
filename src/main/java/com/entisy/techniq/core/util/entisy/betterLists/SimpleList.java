@@ -1,4 +1,6 @@
-package com.entisy.techniq.core.util.entisy;
+package com.entisy.techniq.core.util.entisy.betterLists;
+
+import com.entisy.techniq.core.util.entisy.FileHelper;
 
 import java.io.File;
 import java.lang.reflect.Array;

@@ -1,9 +1,7 @@
 package com.entisy.techniq.common.block.charger;
 
 import com.entisy.techniq.common.block.SemiComplexMachineBlock;
-import com.entisy.techniq.common.block.SimpleMachineBlock;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
-import com.entisy.techniq.core.util.entisy.SimpleConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,7 +1,6 @@
 package com.entisy.techniq.common.block.alloySmelter.recipe;
 
-import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipe;
-import com.entisy.techniq.core.util.entisy.SimpleConfig;
+import com.entisy.techniq.core.init.TechniqConfig;
 import com.google.gson.JsonObject;
 
 import net.minecraft.item.ItemStack;
@@ -16,9 +15,8 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 public class AlloySmelterRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 		implements IRecipeSerializer<AlloySmelterRecipe> {
 
-	private SimpleConfig config = SimpleConfig.getConfig("main");
-	private int requiredEnergy = config.getInt("recipe.defaultRequiredEnergy");
-	private int smeltTime = config.getInt("recipe.defaultWorkTime");
+	private int requiredEnergy = TechniqConfig.DEFAULT_REQUIRED_ENERGY.get();
+	private int smeltTime = TechniqConfig.DEFAULT_WORK_TIME.get();
 
 	@Override
 	public AlloySmelterRecipe fromJson(ResourceLocation id, JsonObject json) {

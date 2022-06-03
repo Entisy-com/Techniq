@@ -5,7 +5,7 @@ import com.entisy.techniq.common.block.MachineTileEntity;
 import com.entisy.techniq.core.capabilities.energy.EnergyStorageImpl;
 import com.entisy.techniq.core.capabilities.energy.IEnergyHandler;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
-import com.entisy.techniq.core.util.entisy.Pair;
+import com.entisy.techniq.core.util.entisy.betterLists.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
