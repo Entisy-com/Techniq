@@ -8,7 +8,7 @@ public class UpgradeItem extends Item {
     private int stage;
 
     public UpgradeItem() {
-        super(new Item.Properties().stacksTo(8).tab(TechniqTab.TECHNIQ_TAB));
+        super(new Item.Properties().stacksTo(1).tab(TechniqTab.TECHNIQ_TAB));
     }
 
     public UpgradeType getUpgradeType() {

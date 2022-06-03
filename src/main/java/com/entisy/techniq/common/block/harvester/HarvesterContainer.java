@@ -25,11 +25,10 @@ import java.util.Objects;
 public class HarvesterContainer extends Container {
 
     public final HarvesterTileEntity tileEntity;
-    private static SimpleList<Slot> slotList = new SimpleList<>();;
     private final IWorldPosCallable canInteractWithCallable;
     public FunctionalIntReferenceHolder currentSmeltTime;
     public FunctionalIntReferenceHolder currentEnergy;
-    public static List<Slot> asd = new ArrayList<>();
+    public static List<Slot> slotList = new ArrayList<>();
 
     public HarvesterContainer(final int id, final PlayerInventory inv, final HarvesterTileEntity tileEntity) {
         super(ModContainerTypes.HARVESTER_CONTAINER_TYPE.get(), id);
@@ -52,7 +51,7 @@ public class HarvesterContainer extends Container {
         addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 27));
 
         {
-            asd = this.slots;
+            slotList = this.slots;
         }
 
         // inventory
@@ -115,10 +114,10 @@ public class HarvesterContainer extends Container {
                     }
                 } else if (index >= invSize && index < hotbar && !this.moveItemStackTo(itemstack1, 0, 6, false)) {
                     return ItemStack.EMPTY;
+                } else if (!this.moveItemStackTo(itemstack1, 5, 7, false)) {
+                    return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemstack1, 5, 7, false)) {
-                return ItemStack.EMPTY;
-            }else if (!this.moveItemStackTo(itemstack1, slots, hotbar, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, slots, hotbar, false)) {
                 return ItemStack.EMPTY;
             }
             if (itemstack1.isEmpty()) {
@@ -138,8 +137,7 @@ public class HarvesterContainer extends Container {
         return this.tileEntity.getCapability(CapabilityEnergy.ENERGY);
     }
 
-    public static SimpleList<Slot> getSlots() {
-        System.out.println(slotList.list().size());
+    public static List<Slot> getSlots() {
         return slotList;
     }
 }
