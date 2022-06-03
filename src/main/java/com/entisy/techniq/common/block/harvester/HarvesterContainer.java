@@ -18,34 +18,42 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class HarvesterContainer extends Container {
 
     public final HarvesterTileEntity tileEntity;
-    private static SimpleList<Slot> slotList = new SimpleList<>();
+    private static SimpleList<Slot> slotList = new SimpleList<>();;
     private final IWorldPosCallable canInteractWithCallable;
     public FunctionalIntReferenceHolder currentSmeltTime;
     public FunctionalIntReferenceHolder currentEnergy;
+    public static List<Slot> asd = new ArrayList<>();
 
     public HarvesterContainer(final int id, final PlayerInventory inv, final HarvesterTileEntity tileEntity) {
         super(ModContainerTypes.HARVESTER_CONTAINER_TYPE.get(), id);
+
         this.tileEntity = tileEntity;
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
         final int slotSizePlus2 = 18;
         final int startX = 8;
 
-        // furnace
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 0, 62, 27)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 1, 80, 27)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 2, 98, 27)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 3, 62, 45)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 4, 80, 45)));
-        slotList.append(addSlot(new OutputSlot(tileEntity.getInventory(), 5, 98, 45)));
 
-        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 6, 9, 27)));
-        slotList.append(addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 27)));
+        addSlot(new OutputSlot(tileEntity.getInventory(), 0, 62, 27));
+        addSlot(new OutputSlot(tileEntity.getInventory(), 1, 80, 27));
+        addSlot(new OutputSlot(tileEntity.getInventory(), 2, 98, 27));
+        addSlot(new OutputSlot(tileEntity.getInventory(), 3, 62, 45));
+        addSlot(new OutputSlot(tileEntity.getInventory(), 4, 80, 45));
+        addSlot(new OutputSlot(tileEntity.getInventory(), 5, 98, 45));
+
+        addSlot(new UpgradeSlot(tileEntity.getInventory(), 6, 9, 27));
+        addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 27));
+
+        {
+            asd = this.slots;
+        }
 
         // inventory
         for (int row = 0; row < 3; row++) {
@@ -131,6 +139,7 @@ public class HarvesterContainer extends Container {
     }
 
     public static SimpleList<Slot> getSlots() {
+        System.out.println(slotList.list().size());
         return slotList;
     }
 }
