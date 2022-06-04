@@ -1,6 +1,7 @@
 package com.entisy.techniq.data;
 
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipeBuilder;
+import com.entisy.techniq.common.block.crusher.recipe.CrusherRecipeBuilder;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipeBuilder;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipeBuilder;
 import com.entisy.techniq.common.block.refinery.recipe.RefineryRecipeBuilder;
@@ -29,6 +30,7 @@ public class ModRecipeProvider extends RecipeProvider {
         final String as = "_from_alloy_smelter";
         final String p = "_from_powder";
         final String r = "_from_refinery";
+        final String c = "_from_crusher";
 
         ShapelessRecipeBuilder
                 .shapeless(ModItems.COPPER_INGOT.get(), 9)
@@ -401,5 +403,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(ModItems.OIL_BUCKET.get())).save(consumer, "plastic" + r);
 
+
+        CrusherRecipeBuilder.crushing(ModItems.COAL_POWDER.get(),2)
+                .requires(Items.COAL_ORE)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.OIL_BUCKET.get())).save(consumer, "plastic" + r);
     }
 }

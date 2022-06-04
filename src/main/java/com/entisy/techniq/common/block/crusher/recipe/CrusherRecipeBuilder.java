@@ -28,7 +28,7 @@ public class CrusherRecipeBuilder {
 	private final int count;
 	private static int requiredEnergy = 200;
 	private static int smeltTime = 200;
-	private final List<Ingredient> ingredients = Lists.newArrayList();
+	private Ingredient ingredients;
 	private final Advancement.Builder advancement = Advancement.Builder.advancement();
 	private String group;
 
@@ -37,11 +37,11 @@ public class CrusherRecipeBuilder {
 		this.count = count;
 	}
 
-	public static CrusherRecipeBuilder metalPress(IItemProvider provider) {
+	public static CrusherRecipeBuilder crushing(IItemProvider provider) {
 		return new CrusherRecipeBuilder(provider, 1);
 	}
 
-	public static CrusherRecipeBuilder metalPress(IItemProvider provider, int count) {
+	public static CrusherRecipeBuilder crushing(IItemProvider provider, int count) {
 		return new CrusherRecipeBuilder(provider, count);
 	}
 
@@ -76,9 +76,8 @@ public class CrusherRecipeBuilder {
 	}
 
 	public CrusherRecipeBuilder requires(Ingredient ingredient, int count) {
-		for (int i = 0; i < count; ++i) {
-			this.ingredients.add(ingredient);
-		}
+		ingredient.getItems()[0].setCount(count);
+		this.ingredients = ingredient;
 
 		return this;
 	}
@@ -104,7 +103,7 @@ public class CrusherRecipeBuilder {
 		if ((new ResourceLocation(id)).equals(resourcelocation)) {
 			throw new IllegalStateException("Metal Press Recipe " + id + " should remove its 'save' argument");
 		} else {
-			this.save(consumer, new ResourceLocation(Techniq.MOD_ID, "metal_press/" + id));
+			this.save(consumer, new ResourceLocation(Techniq.MOD_ID, "crusher/" + id));
 		}
 	}
 
@@ -130,11 +129,11 @@ public class CrusherRecipeBuilder {
 		private final Item result;
 		private final int count;
 		private final String group;
-		private final List<Ingredient> ingredients;
+		private final Ingredient ingredients;
 		private final Advancement.Builder advancement;
 		private final ResourceLocation advancementId;
 
-		public Result(ResourceLocation id, Item result, int count, String group, List<Ingredient> ingredients,
+		public Result(ResourceLocation id, Item result, int count, String group, Ingredient ingredients,
 				Advancement.Builder advancement, ResourceLocation advancementId) {
 			this.id = id;
 			this.result = result;
@@ -151,7 +150,7 @@ public class CrusherRecipeBuilder {
 				json.addProperty("group", this.group);
 			}
 
-			json.add("input", ingredients.get(0).toJson());
+			json.add("input", ingredients.toJson());
 			JsonObject jsonobject = new JsonObject();
 			jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
 			if (this.count > 1) {
@@ -164,7 +163,7 @@ public class CrusherRecipeBuilder {
 		}
 
 		public IRecipeSerializer<?> getType() {
-			return ModRecipes.METAL_PRESS_RECIPE_SERIALIZER;
+			return ModRecipes.CRUSHER_RECIPE_SERIALIZER;
 		}
 
 		public ResourceLocation getId() {
