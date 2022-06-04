@@ -3,11 +3,14 @@ package com.entisy.techniq.data;
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipeBuilder;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipeBuilder;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipeBuilder;
+import com.entisy.techniq.common.block.refinery.recipe.RefineryRecipeBuilder;
 import com.entisy.techniq.core.init.ModBlocks;
+import com.entisy.techniq.core.init.ModFluids;
 import com.entisy.techniq.core.init.ModItems;
 import com.entisy.techniq.core.init.ModTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Items;
 
 import java.util.function.Consumer;
@@ -25,6 +28,7 @@ public class ModRecipeProvider extends RecipeProvider {
         final String ef = "_from_electrical_furnace";
         final String as = "_from_alloy_smelter";
         final String p = "_from_powder";
+        final String r = "_from_refinery";
 
         ShapelessRecipeBuilder
                 .shapeless(ModItems.COPPER_INGOT.get(), 9)
@@ -383,5 +387,19 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("PPP")
                 .pattern("PPP")
                 .pattern("PPP").unlockedBy("has_item", has(ModItems.QUARTZ_POWDER.get())).save(consumer, "quartz" + p);
+
+        RefineryRecipeBuilder.refining(ModItems.PLASTIC_PIECE.get())
+                .requires(ModFluids.OIL, 500)
+                .workTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.OIL_BUCKET.get())).save(consumer, "plastic_piece" + r);
+
+
+        RefineryRecipeBuilder.refining(ModItems.PLASTIC.get())
+                .requires(Fluids.WATER, 500)
+                .workTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.OIL_BUCKET.get())).save(consumer, "plastic" + r);
+
     }
 }

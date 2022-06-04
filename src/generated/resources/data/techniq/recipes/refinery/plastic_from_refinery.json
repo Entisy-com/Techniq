@@ -1,0 +1,12 @@
+{
+  "type": "techniq:refinery",
+  "input": {
+    "fluid": "minecraft:water",
+    "amount": 500
+  },
+  "output": {
+    "item": "techniq:plastic"
+  },
+  "required_energy": 500,
+  "work_time": 200
+}

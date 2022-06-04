@@ -73,6 +73,7 @@ public class ModItems {
 	public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench",
 			WrenchItem::new);
 	public static final RegistryObject<Item> BATTERY_ITEM = ITEMS.register("battery",() -> new BatteryItem());
+	public static final RegistryObject<Item> BATTERY_PACK_ITEM = ITEMS.register("battery_pack",() -> new BatteryPackItem());
 
 	// OTHER
 	public static final RegistryObject<Item> DRILL = ITEMS.register("drill",

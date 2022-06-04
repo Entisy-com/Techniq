@@ -20,11 +20,11 @@ public class RefineryRecipeSerializer extends ForgeRegistryEntry<IRecipeSerializ
 
 	@Override
 	public RefineryRecipe fromJson(ResourceLocation id, JsonObject json) {
-		FluidIngredient input1 = FluidIngredient.deserialize(JSONUtils.getAsJsonArray(json, "fluid").get(0).getAsJsonObject());
-        int fluidAmount = JSONUtils.getAsJsonArray(json, "amount").get(0).getAsInt();
+		FluidIngredient input1 = FluidIngredient.deserialize(JSONUtils.getAsJsonObject(json, "input"));
+        int fluidAmount = JSONUtils.getAsJsonObject(json, "input").get("amount").getAsInt();
 		ItemStack output = CraftingHelper.getItemStack(JSONUtils.getAsJsonObject(json, "output"), true);
 		requiredEnergy = json.get("required_energy").getAsInt();
-		smeltTime = json.get("smelt_time").getAsInt();
+		smeltTime = json.get("work_time").getAsInt();
 		return new RefineryRecipe(id, input1, fluidAmount, output, requiredEnergy, smeltTime);
 	}
 

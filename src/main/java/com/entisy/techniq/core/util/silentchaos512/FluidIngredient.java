@@ -1,5 +1,6 @@
 package com.entisy.techniq.core.util.silentchaos512;
 
+import com.entisy.techniq.Techniq;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.fluid.Fluid;
@@ -156,6 +157,11 @@ public class FluidIngredient implements Predicate<FluidStack> {
         json.addProperty("amount", this.amount);
 
         return json;
+    }
+
+    public String getString() {
+        assert fluid != null;
+        return Objects.requireNonNull(fluid.getRegistryName()).toString();
     }
 
     /**

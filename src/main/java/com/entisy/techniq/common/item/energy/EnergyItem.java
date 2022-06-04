@@ -37,7 +37,7 @@ public class EnergyItem extends Item {
     }
 
     public EnergyItem(int capacity) {
-        this(capacity,2,2);
+        this(capacity,15,15);
     }
 
     @Override
