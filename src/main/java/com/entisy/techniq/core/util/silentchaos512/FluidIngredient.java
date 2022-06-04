@@ -27,7 +27,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
     private final ITag.INamedTag<Fluid> tag;
     @Nullable
     private final Fluid fluid;
-    private final int amount;
+    private int amount;
 
     public FluidIngredient(@Nonnull ITag.INamedTag<Fluid> tag) {
         this(tag, 1000);
@@ -88,6 +88,10 @@ public class FluidIngredient implements Predicate<FluidStack> {
 
     public int getAmount() {
         return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     /**

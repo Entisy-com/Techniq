@@ -1,21 +1,15 @@
 package com.entisy.techniq.common.block.refinery.recipe;
 
-import com.entisy.techniq.common.block.MachineBlockItemHandler;
 import com.entisy.techniq.common.block.MachineTileEntity;
 import com.entisy.techniq.core.init.ModRecipes;
 import com.entisy.techniq.core.util.silentchaos512.FluidIngredient;
-import com.google.common.collect.ImmutableMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class RefineryRecipe implements IRefineryRecipe {
 
@@ -23,16 +17,20 @@ public class RefineryRecipe implements IRefineryRecipe {
     private final FluidIngredient fluidIngredient;
     private final ItemStack output;
     private int requiredEnergy = 500;
-    private int requiredFluid = 500;
+    private int fluidAmount = 500;
     private int workTime = 200;
 
-    public RefineryRecipe(ResourceLocation id, FluidIngredient fluidIngredient, ItemStack output, int requiredEnergy, int requiredFluid, int workTime) {
+    public RefineryRecipe(ResourceLocation id, FluidIngredient fluidIngredient, int fluidAmount, ItemStack output, int requiredEnergy, int workTime) {
         this.id = id;
         this.fluidIngredient = fluidIngredient;
         this.output = output;
+        this.fluidAmount = fluidAmount;
         this.requiredEnergy = requiredEnergy;
         this.workTime = workTime;
-        this.requiredFluid = requiredFluid;
+    }
+
+    public int getFluidAmount() {
+        return fluidAmount;
     }
 
     public double getWorkTimeInSeconds() {
@@ -79,6 +77,10 @@ public class RefineryRecipe implements IRefineryRecipe {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return null;
+    }
+
+    public FluidIngredient getFluidIngredient() {
+        return fluidIngredient;
     }
 
     @Override
