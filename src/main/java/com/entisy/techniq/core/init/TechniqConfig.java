@@ -15,8 +15,8 @@ public class TechniqConfig {
     public static ForgeConfigSpec register() throws IOException {
         builder.push(Techniq.MOD_ID);
 
-        MAX_ENERGY = builder.comment("Set the maximum amount of energy a machine can hold").define("maxEnergy", 10000);
-        MAX_FLUID = builder.comment("Set the maximum amount of fluid a machine can hold").define("maxFluid", 10000);
+        MAX_ENERGY = builder.comment("Set the maximum amount of energy a machine can hold").define("maxEnergy", 100000);
+        MAX_FLUID = builder.comment("Set the maximum amount of fluid a machine can hold").define("maxFluid", 100000);
         DEFAULT_REQUIRED_ENERGY = builder.comment("Set the amount of energy a machine will consume per recipe").define("defaultRequiredEnergy", 200);
         DEFAULT_WORK_TIME = builder.comment("Set the time a recipe will take").define("defaultWorkTime", 200);
 
