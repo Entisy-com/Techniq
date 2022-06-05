@@ -84,6 +84,8 @@ public class ModItems {
 			() -> new Item(new Item.Properties().tab(TechniqTab.TECHNIQ_TAB)));
 	public static final RegistryObject<Item> PLASTIC_PIECE = ITEMS.register("plastic_piece",
 			() -> new Item(new Item.Properties().tab(TechniqTab.TECHNIQ_TAB)));
+	public static final RegistryObject<Item> CIRCUIT_BOARD = ITEMS.register("circuit_board",
+			() -> new Item(new Item.Properties().tab(TechniqTab.TECHNIQ_TAB)));
 
 	// UPGRADES
 	public static final RegistryObject<UpgradeItem> RANGE_UPGRADE = ITEMS.register("range_upgrade",

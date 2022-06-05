@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 
 public interface ICrusherRecipe extends IRecipe<RecipeWrapper> {
 	
-	ResourceLocation RECIPE_TYPE_ID = new ResourceLocation(Techniq.MOD_ID, "metal_press");
+	ResourceLocation RECIPE_TYPE_ID = new ResourceLocation(Techniq.MOD_ID, "crusher");
 	
 	@Nonnull
 	@Override

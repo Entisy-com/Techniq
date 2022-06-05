@@ -66,7 +66,7 @@ public class RefineryRecipe implements IRefineryRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipes.ALLOY_SMELTER_SERIALIZER.get();
+        return ModRecipes.REFINERY_SERIALIZER.get();
     }
 
     @Override

@@ -61,6 +61,8 @@ public class ModRecipes {
             .register("alloy_smelter", () -> ALLOY_SMELTER_RECIPE_SERIALIZER);
     public static final RegistryObject<IRecipeSerializer<?>> REFINERY_SERIALIZER = RECIPE_SERIALIZERS
             .register("refinery", () -> REFINERY_RECIPE_SERIALIZER);
+    public static final RegistryObject<IRecipeSerializer<?>> CRUSHER_SERIALIZER = RECIPE_SERIALIZERS
+            .register("crusher", () -> CRUSHER_RECIPE_SERIALIZER);
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static <T extends IRecipeType> T registerType(ResourceLocation recipeTypeId) {

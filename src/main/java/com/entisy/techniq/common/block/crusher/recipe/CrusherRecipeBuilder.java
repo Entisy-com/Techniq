@@ -24,160 +24,166 @@ import java.util.function.Consumer;
 
 public class CrusherRecipeBuilder {
 
-	private final Item result;
-	private final int count;
-	private static int requiredEnergy = 200;
-	private static int smeltTime = 200;
-	private Ingredient ingredients;
-	private final Advancement.Builder advancement = Advancement.Builder.advancement();
-	private String group;
+    private final Item result;
+    private final int count;
+    private static int requiredEnergy = 200;
+    private static int smeltTime = 200;
+    private final List<Ingredient> ingredients = Lists.newArrayList();
+    private final Advancement.Builder advancement = Advancement.Builder.advancement();
+    private String group;
 
-	public CrusherRecipeBuilder(IItemProvider provider, int count) {
-		this.result = provider.asItem();
-		this.count = count;
-	}
+    public CrusherRecipeBuilder(IItemProvider provider, int count) {
+        this.result = provider.asItem();
+        this.count = count;
+    }
 
-	public static CrusherRecipeBuilder crushing(IItemProvider provider) {
-		return new CrusherRecipeBuilder(provider, 1);
-	}
+    public static CrusherRecipeBuilder crushing(IItemProvider provider) {
+        return new CrusherRecipeBuilder(provider, 1);
+    }
 
-	public static CrusherRecipeBuilder crushing(IItemProvider provider, int count) {
-		return new CrusherRecipeBuilder(provider, count);
-	}
+    public static CrusherRecipeBuilder crushing(IItemProvider provider, int count) {
+        return new CrusherRecipeBuilder(provider, count);
+    }
 
-	public CrusherRecipeBuilder requiredEnergy(int requiredEnergy) {
-		this.requiredEnergy = requiredEnergy;
-		return this;
-	}
+    public CrusherRecipeBuilder crusher(int requiredEnergy) {
+        this.requiredEnergy = requiredEnergy;
+        return this;
+    }
 
-	public CrusherRecipeBuilder smeltTime(int smeltTime) {
-		this.smeltTime = smeltTime;
-		return this;
-	}
+    public CrusherRecipeBuilder smeltTime(int smeltTime) {
+        this.smeltTime = smeltTime;
+        return this;
+    }
 
-	public CrusherRecipeBuilder requires(ITag<Item> tag) {
-		return this.requires(Ingredient.of(tag));
-	}
+    public CrusherRecipeBuilder requires(ITag<Item> tag) {
+        return this.requires(Ingredient.of(tag));
+    }
 
-	public CrusherRecipeBuilder requires(IItemProvider provider) {
-		return this.requires(provider, 1);
-	}
+    public CrusherRecipeBuilder requires(IItemProvider provider) {
+        return this.requires(provider, 1);
+    }
 
-	public CrusherRecipeBuilder requires(IItemProvider provider, int count) {
-		for (int i = 0; i < count; ++i) {
-			this.requires(Ingredient.of(provider));
-		}
+    public CrusherRecipeBuilder requires(IItemProvider provider, int count) {
+        for (int i = 0; i < count; ++i) {
+            this.requires(Ingredient.of(provider));
+        }
 
-		return this;
-	}
+        return this;
+    }
 
-	public CrusherRecipeBuilder requires(Ingredient ingredient) {
-		return this.requires(ingredient, 1);
-	}
+    public CrusherRecipeBuilder requiredEnergy(int amount) {
+        CrusherRecipeBuilder.requiredEnergy = amount;
+        return this;
+    }
 
-	public CrusherRecipeBuilder requires(Ingredient ingredient, int count) {
-		ingredient.getItems()[0].setCount(count);
-		this.ingredients = ingredient;
+    public CrusherRecipeBuilder requires(Ingredient ingredient) {
+        return this.requires(ingredient, 1);
+    }
 
-		return this;
-	}
+    public CrusherRecipeBuilder requires(Ingredient ingredient, int count) {
+        for (int i = 0; i < count; ++i) {
+            this.ingredients.add(ingredient);
+        }
 
-	public CrusherRecipeBuilder unlockedBy(String p_200483_1_, ICriterionInstance p_200483_2_) {
-		this.advancement.addCriterion(p_200483_1_, p_200483_2_);
-		return this;
-	}
+        return this;
+    }
 
-	public CrusherRecipeBuilder group(String p_200490_1_) {
-		this.group = p_200490_1_;
-		return this;
-	}
+    public CrusherRecipeBuilder unlockedBy(String p_200483_1_, ICriterionInstance p_200483_2_) {
+        this.advancement.addCriterion(p_200483_1_, p_200483_2_);
+        return this;
+    }
 
-	@SuppressWarnings("deprecation")
-	public void save(Consumer<IFinishedRecipe> consumer) {
-		this.save(consumer, Registry.ITEM.getKey(this.result));
-	}
+    public CrusherRecipeBuilder group(String p_200490_1_) {
+        this.group = p_200490_1_;
+        return this;
+    }
 
-	@SuppressWarnings("deprecation")
-	public void save(Consumer<IFinishedRecipe> consumer, String id) {
-		ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
-		if ((new ResourceLocation(id)).equals(resourcelocation)) {
-			throw new IllegalStateException("Metal Press Recipe " + id + " should remove its 'save' argument");
-		} else {
-			this.save(consumer, new ResourceLocation(Techniq.MOD_ID, "crusher/" + id));
-		}
-	}
+    @SuppressWarnings("deprecation")
+    public void save(Consumer<IFinishedRecipe> consumer) {
+        this.save(consumer, Registry.ITEM.getKey(this.result));
+    }
 
-	public void save(Consumer<IFinishedRecipe> consumer, ResourceLocation id) {
-		this.ensureValid(id);
-		this.advancement.parent(new ResourceLocation("recipes/root"))
-				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
-				.rewards(AdvancementRewards.Builder.recipe(id)).requirements(IRequirementsStrategy.OR);
-		consumer.accept(new Result(id, this.result, this.count,
-				this.group == null ? "" : this.group, this.ingredients, this.advancement,
-				new ResourceLocation(id.getNamespace(),
-						"recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
-	}
+    @SuppressWarnings("deprecation")
+    public void save(Consumer<IFinishedRecipe> consumer, String id) {
+        ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
+        if ((new ResourceLocation(id)).equals(resourcelocation)) {
+            throw new IllegalStateException("Crusher Recipe " + id + " should remove its 'save' argument");
+        } else {
+            this.save(consumer, new ResourceLocation(Techniq.MOD_ID, "crusher/" + id));
+        }
+    }
 
-	private void ensureValid(ResourceLocation p_200481_1_) {
-		if (this.advancement.getCriteria().isEmpty()) {
-			throw new IllegalStateException("No way of obtaining recipe " + p_200481_1_);
-		}
-	}
+    public void save(Consumer<IFinishedRecipe> consumer, ResourceLocation id) {
+        this.ensureValid(id);
+        this.advancement.parent(new ResourceLocation("recipes/root"))
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
+                .rewards(AdvancementRewards.Builder.recipe(id)).requirements(IRequirementsStrategy.OR);
+        consumer.accept(new CrusherRecipeBuilder.Result(id, this.result, this.count,
+                this.group == null ? "" : this.group, this.ingredients, this.advancement,
+                new ResourceLocation(id.getNamespace(),
+                        "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
+    }
 
-	public static class Result implements IFinishedRecipe {
-		private final ResourceLocation id;
-		private final Item result;
-		private final int count;
-		private final String group;
-		private final Ingredient ingredients;
-		private final Advancement.Builder advancement;
-		private final ResourceLocation advancementId;
+    private void ensureValid(ResourceLocation p_200481_1_) {
+        if (this.advancement.getCriteria().isEmpty()) {
+            throw new IllegalStateException("No way of obtaining recipe " + p_200481_1_);
+        }
+    }
 
-		public Result(ResourceLocation id, Item result, int count, String group, Ingredient ingredients,
-				Advancement.Builder advancement, ResourceLocation advancementId) {
-			this.id = id;
-			this.result = result;
-			this.count = count;
-			this.group = group;
-			this.ingredients = ingredients;
-			this.advancement = advancement;
-			this.advancementId = advancementId;
-		}
+    public static class Result implements IFinishedRecipe {
+        private final ResourceLocation id;
+        private final Item result;
+        private final int count;
+        private final String group;
+        private final List<Ingredient> ingredients;
+        private final Advancement.Builder advancement;
+        private final ResourceLocation advancementId;
 
-		@SuppressWarnings("deprecation")
-		public void serializeRecipeData(JsonObject json) {
-			if (!this.group.isEmpty()) {
-				json.addProperty("group", this.group);
-			}
+        public Result(ResourceLocation id, Item result, int count, String group, List<Ingredient> ingredients,
+                      Advancement.Builder advancement, ResourceLocation advancementId) {
+            this.id = id;
+            this.result = result;
+            this.count = count;
+            this.group = group;
+            this.ingredients = ingredients;
+            this.advancement = advancement;
+            this.advancementId = advancementId;
+        }
 
-			json.add("input", ingredients.toJson());
-			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
-			if (this.count > 1) {
-				jsonobject.addProperty("count", this.count);
-			}
+        @SuppressWarnings("deprecation")
+        public void serializeRecipeData(JsonObject json) {
+            if (!this.group.isEmpty()) {
+                json.addProperty("group", this.group);
+            }
 
-			json.add("output", jsonobject);
-			json.addProperty("required_energy", requiredEnergy);
-			json.addProperty("smelt_time", smeltTime);
-		}
+            json.add("input", ingredients.get(0).toJson());
+            JsonObject jsonobject = new JsonObject();
+            jsonobject.addProperty("item", Registry.ITEM.getKey(this.result).toString());
+            if (this.count > 1) {
+                jsonobject.addProperty("count", this.count);
+            }
 
-		public IRecipeSerializer<?> getType() {
-			return ModRecipes.CRUSHER_RECIPE_SERIALIZER;
-		}
+            json.add("output", jsonobject);
+            json.addProperty("required_energy", requiredEnergy);
+            json.addProperty("work_time", smeltTime);
+        }
 
-		public ResourceLocation getId() {
-			return this.id;
-		}
+        public IRecipeSerializer<?> getType() {
+            return ModRecipes.CRUSHER_RECIPE_SERIALIZER;
+        }
 
-		@Nullable
-		public JsonObject serializeAdvancement() {
-			return this.advancement.serializeToJson();
-		}
+        public ResourceLocation getId() {
+            return this.id;
+        }
 
-		@Nullable
-		public ResourceLocation getAdvancementId() {
-			return this.advancementId;
-		}
-	}
+        @Nullable
+        public JsonObject serializeAdvancement() {
+            return this.advancement.serializeToJson();
+        }
+
+        @Nullable
+        public ResourceLocation getAdvancementId() {
+            return this.advancementId;
+        }
+    }
 }

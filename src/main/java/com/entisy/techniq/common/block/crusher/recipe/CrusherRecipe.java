@@ -11,10 +11,6 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public class CrusherRecipe implements ICrusherRecipe {
 
-//	SimpleConfig config = SimpleConfig.getConfig(Techniq.MOD_ID);
-//	private int requiredEnergy = config.getInt("recipe.defaultRequiredEnergy");
-//	private int smeltTime = config.getInt("recipe.defaultWorkTime");
-
 	private int requiredEnergy = 200;
 	private int smeltTime = 200;
 
@@ -62,7 +58,7 @@ public class CrusherRecipe implements ICrusherRecipe {
 
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return ModRecipes.METAL_PRESS_SERIALIZER.get();
+		return ModRecipes.CRUSHER_SERIALIZER.get();
 	}
 
 	@Override

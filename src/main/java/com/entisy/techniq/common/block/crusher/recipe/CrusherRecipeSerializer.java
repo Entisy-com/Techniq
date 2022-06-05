@@ -18,7 +18,7 @@ public class CrusherRecipeSerializer extends ForgeRegistryEntry<IRecipeSerialize
 		Ingredient input = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));
 		ItemStack output = CraftingHelper.getItemStack(JSONUtils.getAsJsonObject(json, "output"), true);
 		int energyNeeded = json.get("required_energy").getAsInt();
-		int smeltTime = json.get("smelt_time").getAsInt();
+		int smeltTime = json.get("work_time").getAsInt();
 		return new CrusherRecipe(id, input, output, energyNeeded, smeltTime);
 	}
 

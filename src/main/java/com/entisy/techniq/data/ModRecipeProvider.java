@@ -390,6 +390,22 @@ public class ModRecipeProvider extends RecipeProvider {
                 .pattern("PPP")
                 .pattern("PPP").unlockedBy("has_item", has(ModItems.QUARTZ_POWDER.get())).save(consumer, "quartz" + p);
 
+        ShapedRecipeBuilder.shaped(ModBlocks.BATTERY.get())
+                .define('I', Items.IRON_INGOT)
+                .define('B', ModItems.BATTERY_PACK_ITEM.get())
+                .define('C', ModItems.CIRCUIT_BOARD.get())
+                .define('S', Blocks.STONE)
+                .pattern("III")
+                .pattern("BCB")
+                .pattern("SSS").unlockedBy("has_item", has(ModItems.CIRCUIT_BOARD.get())).save(consumer);
+
+        ShapedRecipeBuilder.shaped(ModItems.BATTERY_PACK_ITEM.get())
+                .define('B', ModItems.BATTERY_ITEM.get())
+                .pattern("BBB")
+                .pattern("BBB")
+                .unlockedBy("has_item", has(ModItems.BATTERY_ITEM.get()))
+                .save(consumer);
+
         RefineryRecipeBuilder.refining(ModItems.PLASTIC_PIECE.get())
                 .requires(ModFluids.OIL, 500)
                 .workTime(200)
@@ -403,11 +419,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(ModItems.OIL_BUCKET.get())).save(consumer, "plastic" + r);
 
-
-        CrusherRecipeBuilder.crushing(ModItems.COAL_POWDER.get(),2)
+        CrusherRecipeBuilder.crushing(ModItems.COAL_POWDER.get(), 2)
                 .requires(Items.COAL_ORE)
                 .smeltTime(200)
                 .requiredEnergy(500)
-                .unlockedBy("has_item", has(ModItems.OIL_BUCKET.get())).save(consumer, "plastic" + r);
+                .unlockedBy("has_item", has(Blocks.COAL_ORE))
+                .save(consumer, "coal_powder" + c);
     }
 }
