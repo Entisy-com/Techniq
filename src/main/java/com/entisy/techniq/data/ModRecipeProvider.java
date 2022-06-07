@@ -425,5 +425,47 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.COAL_ORE))
                 .save(consumer, "coal_powder" + c);
+
+        CrusherRecipeBuilder.crushing(ModItems.GOLD_POWDER.get(), 2)
+                .requires(Items.GOLD_ORE)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(Blocks.GOLD_ORE))
+                .save(consumer, "gold_powder" + c);
+
+        CrusherRecipeBuilder.crushing(ModItems.IRON_POWDER.get(), 2)
+                .requires(Items.IRON_ORE)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(Blocks.IRON_ORE))
+                .save(consumer, "iron_powder" + c);
+
+        CrusherRecipeBuilder.crushing(ModItems.DIAMOND_POWDER.get(), 2)
+                .requires(Items.DIAMOND_ORE)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(Blocks.DIAMOND_ORE))
+                .save(consumer, "diamond_powder" + c);
+
+        CrusherRecipeBuilder.crushing(ModItems.EMERALD_POWDER.get(), 2)
+                .requires(Items.EMERALD_ORE)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(Blocks.EMERALD_ORE))
+                .save(consumer, "emerald_powder" + c);
+
+        CrusherRecipeBuilder.crushing(ModItems.QUARTZ_POWDER.get(), 2)
+                .requires(Items.NETHER_QUARTZ_ORE)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(Blocks.NETHER_QUARTZ_ORE))
+                .save(consumer, "quartz_powder" + c);
+
+        CrusherRecipeBuilder.crushing(ModItems.LAPIS_POWDER.get(), 2)
+                .requires(Items.LAPIS_ORE)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(Blocks.LAPIS_ORE))
+                .save(consumer, "lapis_powder" + c);
     }
 }

@@ -118,7 +118,7 @@ public class ModBlocks {
     public static final RegistryObject<ComplexMachineBlock> BLOCK_BREAKER = register("block_breaker",
             BlockBreakerBlock::new);
 
-    public static final RegistryObject<SimpleMachineBlock> CRUSHER = register("crusher",
+    public static final RegistryObject<SemiComplexMachineBlock> CRUSHER = register("crusher",
             CrusherBlock::new);
 
     public static final RegistryObject<SemiComplexMachineBlock> CHARGER = register("charger",

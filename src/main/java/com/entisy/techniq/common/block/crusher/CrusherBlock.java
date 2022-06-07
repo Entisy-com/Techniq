@@ -1,6 +1,7 @@
 package com.entisy.techniq.common.block.crusher;
 
 import com.entisy.techniq.common.block.ComplexMachineBlock;
+import com.entisy.techniq.common.block.SemiComplexMachineBlock;
 import com.entisy.techniq.common.block.SimpleMachineBlock;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
 import net.minecraft.block.BlockState;
@@ -19,7 +20,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class CrusherBlock extends SimpleMachineBlock {
+public class CrusherBlock extends SemiComplexMachineBlock {
 
 	@Override
 	public boolean hasTileEntity(BlockState state) {
