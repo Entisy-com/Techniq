@@ -2,9 +2,13 @@ package com.entisy.techniq.core.init;
 
 import com.entisy.techniq.Techniq;
 import com.entisy.techniq.common.item.*;
+import com.entisy.techniq.common.item.backpack.BackpackItem;
+import com.entisy.techniq.common.item.upgrades.RangeUpgradeItem;
+import com.entisy.techniq.common.item.upgrades.SpeedUpgradeItem;
+import com.entisy.techniq.common.item.upgrades.UpgradeItem;
 import com.entisy.techniq.core.tab.TechniqTab;
 
-import com.entisy.techniq.core.util.SimpleList;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
@@ -69,7 +73,9 @@ public class ModItems {
 			() -> new HammerItem(new Item.Properties().tab(TechniqTab.TECHNIQ_TAB)));
 	public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench",
 			WrenchItem::new);
-	public static final RegistryObject<Item> TESTITEM = ITEMS.register("energy_test_item",()-> new EnergyTestItem(2000));
+	public static final RegistryObject<Item> BATTERY_ITEM = ITEMS.register("battery",() -> new BatteryItem());
+	public static final RegistryObject<Item> BATTERY_PACK_ITEM = ITEMS.register("battery_pack",() -> new BatteryPackItem());
+	public static final RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack",() -> new BackpackItem());
 
 	// OTHER
 	public static final RegistryObject<Item> DRILL = ITEMS.register("drill",
@@ -80,6 +86,15 @@ public class ModItems {
 			() -> new Item(new Item.Properties().tab(TechniqTab.TECHNIQ_TAB)));
 	public static final RegistryObject<Item> PLASTIC_PIECE = ITEMS.register("plastic_piece",
 			() -> new Item(new Item.Properties().tab(TechniqTab.TECHNIQ_TAB)));
+	public static final RegistryObject<Item> CIRCUIT_BOARD = ITEMS.register("circuit_board",
+			() -> new Item(new Item.Properties().tab(TechniqTab.TECHNIQ_TAB)));
+
+	// UPGRADES
+	public static final RegistryObject<UpgradeItem> RANGE_UPGRADE = ITEMS.register("range_upgrade",
+			() -> new RangeUpgradeItem());
+
+	public static final RegistryObject<UpgradeItem> SPEED_UPGRADE = ITEMS.register("speed_upgrade",
+			() -> new SpeedUpgradeItem());
 
 	// FRAMES
 	public static final RegistryObject<MachineFrameItem> MACHINE_FRAME = ITEMS.register("basic_machine_frame",

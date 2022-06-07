@@ -1,9 +1,11 @@
 package com.entisy.techniq.common.block.harvester;
 
 import com.entisy.techniq.common.slots.OutputSlot;
+import com.entisy.techniq.common.slots.UpgradeSlot;
 import com.entisy.techniq.core.init.ModBlocks;
 import com.entisy.techniq.core.init.ModContainerTypes;
 import com.entisy.techniq.core.util.FunctionalIntReferenceHolder;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -16,6 +18,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class HarvesterContainer extends Container {
@@ -24,22 +28,31 @@ public class HarvesterContainer extends Container {
     private final IWorldPosCallable canInteractWithCallable;
     public FunctionalIntReferenceHolder currentSmeltTime;
     public FunctionalIntReferenceHolder currentEnergy;
+    public static List<Slot> slotList = new ArrayList<>();
 
     public HarvesterContainer(final int id, final PlayerInventory inv, final HarvesterTileEntity tileEntity) {
         super(ModContainerTypes.HARVESTER_CONTAINER_TYPE.get(), id);
+
         this.tileEntity = tileEntity;
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
         final int slotSizePlus2 = 18;
         final int startX = 8;
 
-        // furnace
+
         addSlot(new OutputSlot(tileEntity.getInventory(), 0, 62, 27));
         addSlot(new OutputSlot(tileEntity.getInventory(), 1, 80, 27));
         addSlot(new OutputSlot(tileEntity.getInventory(), 2, 98, 27));
         addSlot(new OutputSlot(tileEntity.getInventory(), 3, 62, 45));
         addSlot(new OutputSlot(tileEntity.getInventory(), 4, 80, 45));
         addSlot(new OutputSlot(tileEntity.getInventory(), 5, 98, 45));
+
+        addSlot(new UpgradeSlot(tileEntity.getInventory(), 6, 9, 27));
+        addSlot(new UpgradeSlot(tileEntity.getInventory(), 7, 27, 27));
+
+        {
+            slotList = this.slots;
+        }
 
         // inventory
         for (int row = 0; row < 3; row++) {
@@ -85,7 +98,7 @@ public class HarvesterContainer extends Container {
             ItemStack itemstack1 = slot.getItem();
 
             int slots = 6;
-            int invSize = slots + 27;
+            int invSize = slots + 27 + 2;
             int hotbar = invSize + 9;
 
             itemstack = itemstack1.copy();
@@ -100,6 +113,8 @@ public class HarvesterContainer extends Container {
                         return ItemStack.EMPTY;
                     }
                 } else if (index >= invSize && index < hotbar && !this.moveItemStackTo(itemstack1, 0, 6, false)) {
+                    return ItemStack.EMPTY;
+                } else if (!this.moveItemStackTo(itemstack1, 5, 7, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.moveItemStackTo(itemstack1, slots, hotbar, false)) {
@@ -120,5 +135,9 @@ public class HarvesterContainer extends Container {
 
     public LazyOptional<IEnergyStorage> getCapabilityFromTE() {
         return this.tileEntity.getCapability(CapabilityEnergy.ENERGY);
+    }
+
+    public static List<Slot> getSlots() {
+        return slotList;
     }
 }

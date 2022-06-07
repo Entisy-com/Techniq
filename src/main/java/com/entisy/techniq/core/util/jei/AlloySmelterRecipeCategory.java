@@ -10,12 +10,18 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
+import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AlloySmelterRecipeCategory extends DrawHelper implements IRecipeCategory<AlloySmelterRecipe> {
 
@@ -62,7 +68,8 @@ public class AlloySmelterRecipeCategory extends DrawHelper implements IRecipeCat
 
     @Override
     public void setIngredients(AlloySmelterRecipe recipe, IIngredients ingredients) {
-        ingredients.setInputIngredients(recipe.getIngredients());
+        ingredients.setInputLists(VanillaTypes.ITEM, recipe.getIngredientMap().keySet().stream()
+                .map(i -> Arrays.asList(i.getItems())).collect(Collectors.toList()));
         ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
     }
 
@@ -71,7 +78,21 @@ public class AlloySmelterRecipeCategory extends DrawHelper implements IRecipeCat
         recipeLayout.getItemStacks().init(0, true, 11, 14);
         recipeLayout.getItemStacks().init(1, true, 11, 41);
         recipeLayout.getItemStacks().init(2, false, 81, 27);
-        recipeLayout.getItemStacks().set(ingredients);
+
+        int i = 0;
+        for (Map.Entry<Ingredient, Integer> entry : recipe.getIngredientMap().entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            Integer count = entry.getValue();
+            recipeLayout.getItemStacks().set(i++, Arrays.stream(ingredient.getItems())
+                    .map(s -> {
+                        ItemStack stack = s.copy();
+                        stack.setCount(count);
+                        return stack;
+                    })
+                    .collect(Collectors.toList())
+            );
+        }
+        recipeLayout.getItemStacks().set(2, recipe.getResultItem());
     }
 
     @Override

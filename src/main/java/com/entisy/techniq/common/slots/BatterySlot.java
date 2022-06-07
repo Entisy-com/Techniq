@@ -1,0 +1,115 @@
+package com.entisy.techniq.common.slots;
+
+import com.entisy.techniq.common.item.BatteryItem;
+import com.entisy.techniq.common.item.upgrades.UpgradeItem;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+
+import javax.annotation.Nonnull;
+
+public class BatterySlot extends Slot {
+
+	private static IInventory emptyInventory = new Inventory(0);
+    private final IItemHandler itemHandler;
+    private final int index;
+
+    public BatterySlot(IItemHandler itemHandler, int index, int xPosition, int yPosition)
+    {
+        super(emptyInventory, index, xPosition, yPosition);
+        this.itemHandler = itemHandler;
+        this.index = index;
+    }
+
+    @Override
+    public boolean mayPlace(@Nonnull ItemStack stack)
+    {
+        return stack.getItem() instanceof BatteryItem;
+    }
+
+    @Override
+    @Nonnull
+    public ItemStack getItem()
+    {
+        return this.getItemHandler().getStackInSlot(index);
+    }
+
+    @Override
+    public void set(@Nonnull ItemStack stack)
+    {
+        ((IItemHandlerModifiable) this.getItemHandler()).setStackInSlot(index, stack);
+        this.setChanged();
+    }
+
+    @Override
+    public void onQuickCraft(@Nonnull ItemStack oldStackIn, @Nonnull ItemStack newStackIn)
+    {
+
+    }
+
+    @Override
+    public int getMaxStackSize()
+    {
+        return 1;
+    }
+
+    @Override
+    public int getMaxStackSize(@Nonnull ItemStack stack)
+    {
+        ItemStack maxAdd = stack.copy();
+        int maxInput = stack.getMaxStackSize();
+        maxAdd.setCount(maxInput);
+
+        IItemHandler handler = this.getItemHandler();
+        ItemStack currentStack = handler.getStackInSlot(index);
+        if (handler instanceof IItemHandlerModifiable) {
+            IItemHandlerModifiable handlerModifiable = (IItemHandlerModifiable) handler;
+
+            handlerModifiable.setStackInSlot(index, ItemStack.EMPTY);
+
+            ItemStack remainder = handlerModifiable.insertItem(index, maxAdd, true);
+
+            handlerModifiable.setStackInSlot(index, currentStack);
+
+            return maxInput - remainder.getCount();
+        }
+        else
+        {
+            ItemStack remainder = handler.insertItem(index, maxAdd, true);
+
+            int current = currentStack.getCount();
+            int added = maxInput - remainder.getCount();
+            return current + added;
+        }
+    }
+
+    @Override
+    public boolean mayPickup(PlayerEntity playerIn)
+    {
+        return !this.getItemHandler().extractItem(index, 1, true).isEmpty();
+    }
+
+    @Override
+    @Nonnull
+    public ItemStack remove(int amount)
+    {
+        return this.getItemHandler().extractItem(index, amount, false);
+    }
+
+    public IItemHandler getItemHandler()
+    {
+        return itemHandler;
+    }
+
+    public boolean containsUpgrade() {
+        return this.hasItem();
+    }
+
+    public UpgradeItem getUpgradeItem() {
+        return (UpgradeItem) this.getItem().getItem();
+    }
+}

@@ -4,12 +4,18 @@ import com.entisy.techniq.Techniq;
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipe;
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipeSerializer;
 import com.entisy.techniq.common.block.alloySmelter.recipe.IAlloySmelterRecipe;
+import com.entisy.techniq.common.block.crusher.recipe.CrusherRecipe;
+import com.entisy.techniq.common.block.crusher.recipe.CrusherRecipeSerializer;
+import com.entisy.techniq.common.block.crusher.recipe.ICrusherRecipe;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipe;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipeSerializer;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.IElectricalFurnaceRecipe;
 import com.entisy.techniq.common.block.metalPress.recipe.IMetalPressRecipe;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipe;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipeSerializer;
+import com.entisy.techniq.common.block.refinery.recipe.IRefineryRecipe;
+import com.entisy.techniq.common.block.refinery.recipe.RefineryRecipe;
+import com.entisy.techniq.common.block.refinery.recipe.RefineryRecipeSerializer;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -33,6 +39,15 @@ public class ModRecipes {
     public static final IRecipeSerializer<AlloySmelterRecipe> ALLOY_SMELTER_RECIPE_SERIALIZER = new AlloySmelterRecipeSerializer();
     public static final IRecipeType<IAlloySmelterRecipe> ALLOY_SMELTER_TYPE = registerType(
             IAlloySmelterRecipe.RECIPE_TYPE_ID);
+    // REFINERY
+    public static final IRecipeSerializer<RefineryRecipe> REFINERY_RECIPE_SERIALIZER = new RefineryRecipeSerializer();
+    public static final IRecipeType<IRefineryRecipe> REFINERY_TYPE = registerType(
+            IRefineryRecipe.RECIPE_TYPE_ID);
+
+    // CRUSHER
+    public static final IRecipeSerializer<CrusherRecipe> CRUSHER_RECIPE_SERIALIZER = new CrusherRecipeSerializer();
+    public static final IRecipeType<ICrusherRecipe> CRUSHER_TYPE = registerType(
+            ICrusherRecipe.RECIPE_TYPE_ID);
 
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister
             .create(ForgeRegistries.RECIPE_SERIALIZERS, Techniq.MOD_ID);
@@ -44,6 +59,10 @@ public class ModRecipes {
             .register("metal_press", () -> METAL_PRESS_RECIPE_SERIALIZER);
     public static final RegistryObject<IRecipeSerializer<?>> ALLOY_SMELTER_SERIALIZER = RECIPE_SERIALIZERS
             .register("alloy_smelter", () -> ALLOY_SMELTER_RECIPE_SERIALIZER);
+    public static final RegistryObject<IRecipeSerializer<?>> REFINERY_SERIALIZER = RECIPE_SERIALIZERS
+            .register("refinery", () -> REFINERY_RECIPE_SERIALIZER);
+    public static final RegistryObject<IRecipeSerializer<?>> CRUSHER_SERIALIZER = RECIPE_SERIALIZERS
+            .register("crusher", () -> CRUSHER_RECIPE_SERIALIZER);
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static <T extends IRecipeType> T registerType(ResourceLocation recipeTypeId) {

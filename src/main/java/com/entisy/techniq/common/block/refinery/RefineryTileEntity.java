@@ -3,46 +3,51 @@ package com.entisy.techniq.common.block.refinery;
 import com.entisy.techniq.Techniq;
 import com.entisy.techniq.common.block.MachineTileEntity;
 import com.entisy.techniq.common.block.alloySmelter.AlloySmelterBlock;
+import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipe;
+import com.entisy.techniq.common.block.refinery.recipe.RefineryRecipe;
 import com.entisy.techniq.core.capabilities.energy.EnergyStorageImpl;
 import com.entisy.techniq.core.capabilities.energy.IEnergyHandler;
 import com.entisy.techniq.core.capabilities.fluid.CapabilityFluid;
 import com.entisy.techniq.core.capabilities.fluid.FluidStorageImpl;
 import com.entisy.techniq.core.capabilities.fluid.IFluidHandler;
-import com.entisy.techniq.core.capabilities.fluid.IFluidStorage;
 import com.entisy.techniq.core.init.ModItems;
+import com.entisy.techniq.core.init.ModRecipes;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
-import com.entisy.techniq.core.util.Pair;
+import com.entisy.techniq.core.util.entisy.FluidType;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.BucketItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
+
+import javax.annotation.Nullable;
+import java.util.Set;
 
 public class RefineryTileEntity extends MachineTileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyHandler, IFluidHandler {
 
-    public static final int maxFluid = 10000;
-    private final FluidStorageImpl fluidStorage;
-    private final LazyOptional<IFluidStorage> fluid;
     public int currentFluid = 0;
     public int bucketProgress = 0;
+    public FluidStack fluidStack = FluidStack.EMPTY;
 
     public RefineryTileEntity() {
         super(3, 200, 0, ModTileEntityTypes.REFINERY_TILE_ENTITY.get());
-        fluidStorage = createFluid(maxFluid);
-        fluid = LazyOptional.of(() -> fluidStorage);
     }
 
     @Override
@@ -60,28 +65,10 @@ public class RefineryTileEntity extends MachineTileEntity implements ITickableTi
             fluid.ifPresent(iFluidStorage -> {
                 currentFluid = iFluidStorage.getFluidStored();
             });
+
             // Filling up stuff
-            if (inventory.getItem(0).sameItem(ModItems.OIL_BUCKET.get().getDefaultInstance())) {
-                if ((inventory.getItem(1) == ItemStack.EMPTY || inventory.getItem(1).sameItem(Items.AIR.getDefaultInstance())) || inventory.getItem(1).getCount() < 16) {
-                    if ((currentFluid + 1000) <= maxFluid) {
-                        if (bucketProgress < getMaxBucket()) {
-                            level.setBlockAndUpdate(getBlockPos(), getBlockState());
-                            bucketProgress++;
-                            dirty = true;
-                        } else {
-                            inventory.setStackInSlot(0, ItemStack.EMPTY);
-                            inventory.insertItem(1, Items.BUCKET.getDefaultInstance(), false);
-                            fluid.ifPresent(iFluidStorage -> {
-                                ((FluidStorageImpl) iFluidStorage).setFluidDirectly(iFluidStorage.getFluidStored() + 1000);
-                                currentFluid = iFluidStorage.getFluidStored();
-                            });
-                            level.setBlockAndUpdate(getBlockPos(), getBlockState());
-                            bucketProgress = 0;
-                            dirty = true;
-                        }
-                    }
-                }
-            }
+            tryFillTank();
+
             // recipe stuff
             if (currentEnergy >= getRequiredEnergy()) {
                 if (currentFluid >= getRequiredFluid()) {
@@ -121,20 +108,88 @@ public class RefineryTileEntity extends MachineTileEntity implements ITickableTi
         }
     }
 
-    @Override
-    public void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
-        currentFluid = nbt.getInt("FluidStored");
-        fluidStorage.setFluidDirectly(currentFluid);
+    // TODO: recipe
+    private void tryFillTank() {
+        if (isFluidEmpty()) {
+            if (inventory.getItem(1).getCount() < 16) {
+                if (registerAcceptableFluids().contains(inventory.getItem(0).getItem())) {
+                    fillTank();
+                }
+            }
+        } else {
+            if (isSameFluid(getFluidStack(inventory.getItem(0)))) {
+                if (currentFluid < maxFluid && (maxFluid - currentFluid) >= 1000) {
+                    if (inventory.getItem(1).getCount() < 16) {
+                        if (registerAcceptableFluids().contains(inventory.getItem(0).getItem())) {
+                            fillTank();
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    @Override
-    public CompoundNBT save(CompoundNBT nbt) {
-        super.save(nbt);
-        fluid.ifPresent(iFluidStorage -> {
-            nbt.putInt("FluidStored", iFluidStorage.getFluidStored());
-        });
-        return nbt;
+    private SimpleList<Item> registerAcceptableFluids() {
+        return new SimpleList<>(
+                Items.WATER_BUCKET,
+                Items.LAVA_BUCKET,
+                ModItems.OIL_BUCKET.get()
+        );
+    }
+
+    private void fillTank() {
+        if (inventory.getItem(0).sameItem(ItemStack.EMPTY) || inventory.getItem(0).sameItem(Items.AIR.getDefaultInstance())) {
+            fluid.ifPresent(iFluidStorage -> {
+                fluidStorage.setFluidDirectly(currentFluid + 1000);
+                currentFluid = fluidStorage.getFluidStored();
+            });
+            inventory.setStackInSlot(0, ItemStack.EMPTY);
+            inventory.insertItem(1, Items.BUCKET.getDefaultInstance(), false);
+        }
+    }
+
+    private FluidStack getFluidStack(ItemStack i) {
+        if (i.getItem() instanceof BucketItem) return new FluidStack(((BucketItem) i.getItem()).getFluid(), 1000);
+        return FluidStack.EMPTY;
+    }
+
+    private boolean isSameFluid(FluidStack fluidStack) {
+        return this.fluidStack.isFluidEqual(fluidStack);
+    }
+
+    //region Fluid handling
+
+    public FluidStack getFluid() {
+        if (!isFluidEmpty()) {
+            return fluidStack;
+        }
+        return FluidStack.EMPTY;
+    }
+
+    public FluidStack getFluid(BucketItem bucket) {
+        return new FluidStack(bucket.getFluid(), 1000);
+    }
+
+    public boolean isFluidEmpty() {
+        return fluidStack.isEmpty();
+    }
+
+    //endregion
+
+    @Nullable
+    public RefineryRecipe getRecipe(FluidStack stack) {
+        if (stack == null) {
+            return null;
+        }
+
+        Set<IRecipe<?>> recipes = findRecipesByType(ModRecipes.REFINERY_TYPE, level);
+        for (IRecipe<?> iRecipe : recipes) {
+            RefineryRecipe recipe = (RefineryRecipe) iRecipe;
+            if (recipe.matches(new RecipeWrapper(inventory), level)) {
+                return recipe;
+            }
+        }
+        return null;
     }
 
     public void setCustomName(ITextComponent name) {
@@ -147,6 +202,19 @@ public class RefineryTileEntity extends MachineTileEntity implements ITickableTi
 
     public ITextComponent getDefaultName() {
         return new TranslationTextComponent("container." + Techniq.MOD_ID + ".refinery");
+    }
+
+    @Override
+    public CompoundNBT save(CompoundNBT nbt) {
+        super.save(nbt);
+        fluidStack.writeToNBT(nbt);
+        return nbt;
+    }
+
+    @Override
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        fluidStack = FluidStack.loadFluidStackFromNBT(nbt);
     }
 
     @Override
@@ -204,6 +272,4 @@ public class RefineryTileEntity extends MachineTileEntity implements ITickableTi
     public FluidStorageImpl getFluidImpl() {
         return fluidStorage;
     }
-
-
 }

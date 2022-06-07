@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "side": "techniq:block/crusher/side",
+    "front": "techniq:block/crusher/side",
+    "bottom": "techniq:block/crusher/bottom",
+    "top": "techniq:block/crusher/top"
+  }
+}

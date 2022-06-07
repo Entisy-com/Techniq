@@ -1,3 +1,6 @@
 {
-  "parent": "techniq:block/battery"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "techniq:item/battery"
+  }
 }

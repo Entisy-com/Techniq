@@ -1,6 +1,7 @@
 package com.entisy.techniq.common.block.alloySmelter.recipe;
 
 import com.entisy.techniq.core.init.ModRecipes;
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
@@ -9,16 +10,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class AlloySmelterRecipe implements IAlloySmelterRecipe {
 
     private final ResourceLocation id;
     private final Ingredient input1, input2;
+    private final Map<Ingredient, Integer> ingredients = new LinkedHashMap<>();
     private final ItemStack output;
-    private int requiredEnergy = 200;
-    private int smeltTime = 200;
+    private int requiredEnergy;
+    private int smeltTime;
 
     public AlloySmelterRecipe(ResourceLocation id, Ingredient input1, Ingredient input2, ItemStack output, int requiredEnergy, int smeltTime) {
         this.id = id;
+        this.ingredients.put(input1, input1.getItems()[0].getCount());
+        this.ingredients.put(input2, input2.getItems()[0].getCount());
         this.input1 = input1;
         this.input2 = input2;
         this.output = output;
@@ -46,6 +53,10 @@ public class AlloySmelterRecipe implements IAlloySmelterRecipe {
         if (item.getItem() == getIngredients().get(0).getItems()[0].getItem()) return input1.getItems()[0].getCount();
         if (item.getItem() == getIngredients().get(1).getItems()[0].getItem()) return input2.getItems()[0].getCount();
         return 1;
+    }
+
+    public Map<Ingredient, Integer> getIngredientMap() {
+        return ImmutableMap.copyOf(ingredients);
     }
 
     @Override

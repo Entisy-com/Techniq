@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "side": "techniq:block/battery_block/side",
+    "front": "techniq:block/battery_block/side",
+    "bottom": "techniq:block/battery_block/bottom",
+    "top": "techniq:block/battery_block/top"
+  }
+}

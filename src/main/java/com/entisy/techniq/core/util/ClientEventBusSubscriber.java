@@ -7,6 +7,7 @@ import com.entisy.techniq.common.block.battery.BatteryScreen;
 import com.entisy.techniq.common.block.blockBreaker.BlockBreakerScreen;
 import com.entisy.techniq.common.block.blockPlacer.BlockPlacerScreen;
 import com.entisy.techniq.common.block.charger.ChargerScreen;
+import com.entisy.techniq.common.block.crusher.CrusherScreen;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceScreen;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorScreen;
 import com.entisy.techniq.common.block.harvester.HarvesterScreen;
@@ -15,6 +16,7 @@ import com.entisy.techniq.common.block.metalPress.MetalPressScreen;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerScreen;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerScreen;
 import com.entisy.techniq.common.block.refinery.RefineryScreen;
+import com.entisy.techniq.common.item.backpack.BackpackScreen;
 import com.entisy.techniq.core.init.ModBlocks;
 import com.entisy.techniq.core.init.ModContainerTypes;
 import com.entisy.techniq.core.init.ModFluids;
@@ -47,6 +49,9 @@ public class ClientEventBusSubscriber {
 		ScreenManager.register(ModContainerTypes.BLOCK_PLACER_CONTAINER_TYPE.get(), BlockPlacerScreen::new);
 		ScreenManager.register(ModContainerTypes.HARVESTER_CONTAINER_TYPE.get(), HarvesterScreen::new);
 		ScreenManager.register(ModContainerTypes.CHARGER_CONTAINER_TYPE.get(), ChargerScreen::new);
+		ScreenManager.register(ModContainerTypes.CRUSHER_CONTAINER_TYPE.get(), CrusherScreen::new);
+
+		ScreenManager.register(ModContainerTypes.BACKPACK_CONTAINER_TYPE.get(), BackpackScreen::new);
 
 //		ClientRegistry.bindTileEntityRenderer(ModTileEntityTypes.DISPLAY_CASE_TILE_ENTITY_TYPE.get(),
 //				DisplayCaseTileEntityRenderer::new);

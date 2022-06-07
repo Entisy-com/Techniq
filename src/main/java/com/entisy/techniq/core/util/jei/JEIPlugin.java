@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.Collections;
 import java.util.List;
@@ -70,10 +71,11 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipes(Collections.singleton(new RefineryTileEntity()), RefineryRecipeCategory.UID);
         // Powder
         for (Item item : ModTags.Items.POWDER.getValues()) {
+
             registration.addIngredientInfo(
                     new ItemStack(item),
                     ingredientManager.getIngredientType(ItemStack.class),
-                    "Can be obtained from Advanced Ore Miners as a side product.");
+                    new StringTextComponent("Can be obtained from Advanced Ore Miners as a side product."));
         }
         // Wrench
         addInfo(registration, ModItems.WRENCH.get(),
@@ -91,20 +93,19 @@ public class JEIPlugin implements IModPlugin {
         ItemStack stack = new ItemStack(item);
         IIngredientManager ingredientManager = registration.getIngredientManager();
         IIngredientType<ItemStack> ingredientType = ingredientManager.getIngredientType(ItemStack.class);
-        registration.addIngredientInfo(stack, ingredientType, info);
+        registration.addIngredientInfo(stack, ingredientType, new StringTextComponent(info));
     }
 
     private void addInfo(IRecipeRegistration registration, Block block, String info) {
         ItemStack stack = new ItemStack(block);
         IIngredientManager ingredientManager = registration.getIngredientManager();
         IIngredientType<ItemStack> ingredientType = ingredientManager.getIngredientType(ItemStack.class);
-        registration.addIngredientInfo(stack, ingredientType, info);
+        registration.addIngredientInfo(stack, ingredientType, new StringTextComponent(info));
     }
 
-    //TODO
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(AlloySmelterScreen.class,0,0,28,23,AlloySmelterRecipeCategory.UID);
+        registration.addRecipeClickArea(AlloySmelterScreen.class,0,0,28,23, AlloySmelterRecipeCategory.UID);
     }
 
     @Override

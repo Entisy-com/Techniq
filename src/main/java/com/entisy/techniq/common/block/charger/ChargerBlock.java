@@ -1,7 +1,6 @@
 package com.entisy.techniq.common.block.charger;
 
 import com.entisy.techniq.common.block.SemiComplexMachineBlock;
-import com.entisy.techniq.common.block.SimpleMachineBlock;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +18,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class ChargerBlock extends SimpleMachineBlock {
+public class ChargerBlock extends SemiComplexMachineBlock {
 
     public ChargerBlock() {
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));

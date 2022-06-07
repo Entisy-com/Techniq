@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BatteryScreen extends ContainerScreen<BatteryContainer> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Techniq.MOD_ID,
-            "textures/block/battery/gui.png");
+            "textures/block/battery_block/gui.png");
 
     private final BatteryContainer container;
 

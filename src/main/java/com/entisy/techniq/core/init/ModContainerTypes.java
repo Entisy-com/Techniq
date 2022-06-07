@@ -7,6 +7,7 @@ import com.entisy.techniq.common.block.battery.BatteryContainer;
 import com.entisy.techniq.common.block.blockBreaker.BlockBreakerContainer;
 import com.entisy.techniq.common.block.blockPlacer.BlockPlacerContainer;
 import com.entisy.techniq.common.block.charger.ChargerContainer;
+import com.entisy.techniq.common.block.crusher.CrusherContainer;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceContainer;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorContainer;
 import com.entisy.techniq.common.block.harvester.HarvesterContainer;
@@ -15,6 +16,7 @@ import com.entisy.techniq.common.block.metalPress.MetalPressContainer;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerContainer;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerContainer;
 import com.entisy.techniq.common.block.refinery.RefineryContainer;
+import com.entisy.techniq.common.item.backpack.BackpackContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;
@@ -31,6 +33,9 @@ public class ModContainerTypes {
 
 	public static final RegistryObject<ContainerType<MetalPressContainer>> METAL_PRESS_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("metal_press", () -> IForgeContainerType.create(MetalPressContainer::new));
+
+	public static final RegistryObject<ContainerType<CrusherContainer>> CRUSHER_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("crusher", () -> IForgeContainerType.create(CrusherContainer::new));
 
 	public static final RegistryObject<ContainerType<ChargerContainer>> CHARGER_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("charger", () -> IForgeContainerType.create(ChargerContainer::new));
@@ -64,4 +69,7 @@ public class ModContainerTypes {
 
 	public static final RegistryObject<ContainerType<HarvesterContainer>> HARVESTER_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("harvester", () -> IForgeContainerType.create(HarvesterContainer::new));
+
+	public static final RegistryObject<ContainerType<BackpackContainer>> BACKPACK_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("backpack", () -> IForgeContainerType.create(BackpackContainer::new));
 }

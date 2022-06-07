@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
@@ -65,4 +66,27 @@ public class ChargerContainer extends Container {
     public boolean stillValid(PlayerEntity player) {
         return stillValid(canInteractWithCallable, player, ModBlocks.CHARGER.get());
     }
+
+    @Override
+	public ItemStack quickMoveStack(PlayerEntity player, int index) {
+		ItemStack stack = ItemStack.EMPTY;
+		Slot slot = slots.get(index);
+		if (slot != null && slot.hasItem()) {
+			ItemStack stack1 = slot.getItem();
+			stack = stack1.copy();
+			if (index < ChargerTileEntity.slots
+					&& !moveItemStackTo(stack1, ChargerTileEntity.slots, slots.size(), true)) {
+				return ItemStack.EMPTY;
+			}
+			if (!moveItemStackTo(stack1, 0, ChargerTileEntity.slots, false)) {
+				return ItemStack.EMPTY;
+			}
+			if (stack1.isEmpty()) {
+				slot.set(ItemStack.EMPTY);
+			} else {
+				slot.setChanged();
+			}
+		}
+		return stack;
+	}
 }

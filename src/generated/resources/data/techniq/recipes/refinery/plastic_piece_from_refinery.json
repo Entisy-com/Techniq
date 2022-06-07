@@ -1,0 +1,12 @@
+{
+  "type": "techniq:refinery",
+  "input": {
+    "fluid": "techniq:oil",
+    "amount": 500
+  },
+  "output": {
+    "item": "techniq:plastic_piece"
+  },
+  "required_energy": 500,
+  "work_time": 200
+}

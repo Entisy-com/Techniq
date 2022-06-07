@@ -1,6 +1,9 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
-    "all": "techniq:block/charger"
+    "side": "techniq:block/charger/side",
+    "front": "techniq:block/charger/side",
+    "bottom": "techniq:block/charger/bottom",
+    "top": "techniq:block/charger/top"
   }
 }

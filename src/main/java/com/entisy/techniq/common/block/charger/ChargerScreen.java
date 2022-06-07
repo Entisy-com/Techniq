@@ -42,7 +42,7 @@ public class ChargerScreen extends ContainerScreen<ChargerContainer> {
         // draw energy bar
         int currentEnergy = getMenu().currentEnergy.get();
         int pixel = currentEnergy != 0 ? currentEnergy * 50 / MachineTileEntity.maxEnergy : 0;
-        blit(stack, getGuiLeft() + 82, getGuiTop() + (50 - pixel) + 18, 176, (50 - pixel), 12, 50);
+        blit(stack, getGuiLeft() + 154, getGuiTop() + (50 - pixel) + 18, 176, (50 - pixel), 12, 50);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ChargerScreen extends ContainerScreen<ChargerContainer> {
     protected void renderTooltip(MatrixStack matrixStack, int mouseX, int mouseY) {
         super.renderTooltip(matrixStack, mouseX, mouseY);
 
-        if (mouseX >= getGuiLeft() + 82 && mouseX < getGuiLeft() + 82 + 12) {
+        if (mouseX >= getGuiLeft() + 154 && mouseX < getGuiLeft() + 154 + 12) {
             if (mouseY >= getGuiTop() + 18 && mouseY < getGuiTop() + 18 + 50) {
 
                 // rendering the amount of energy stored e.g. 5000/25000
@@ -70,7 +70,7 @@ public class ChargerScreen extends ContainerScreen<ChargerContainer> {
                 int currentEnergy = getMenu().currentEnergy.get();
 
                 this.renderTooltip(matrixStack,
-                        new StringTextComponent(currentEnergy + "/" + ChargerTileEntity.maxEnergy), mouseX, mouseY);
+                        new StringTextComponent(currentEnergy + "/" + MachineTileEntity.maxEnergy), mouseX, mouseY);
             }
         }
     }

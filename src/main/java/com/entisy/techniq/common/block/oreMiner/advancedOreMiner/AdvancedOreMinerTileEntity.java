@@ -6,10 +6,10 @@ import com.entisy.techniq.core.capabilities.energy.EnergyStorageImpl;
 import com.entisy.techniq.core.capabilities.energy.IEnergyHandler;
 import com.entisy.techniq.core.init.ModItems;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
-import com.entisy.techniq.core.util.Pair;
-import com.entisy.techniq.core.util.SimpleList;
-import com.entisy.techniq.core.util.SimpleMap;
-import com.entisy.techniq.core.util.Triple;
+import com.entisy.techniq.core.util.entisy.betterLists.Pair;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleMap;
+import com.entisy.techniq.core.util.entisy.betterLists.Triplet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,9 +31,9 @@ import java.util.Random;
 public class AdvancedOreMinerTileEntity extends MachineTileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyHandler {
 
     //             block, Uses, MiningTime
-    private Triple<Block, Integer, Float> triple = new Triple<>();
+    private Triplet<Block, Integer, Float> triple = new Triplet<>();
     private SimpleList<Block> minableBlocks = new SimpleList<>();
-    private Triple<Block, Pair<Item, Integer>, Pair<Item, Integer>> outputs = new Triple<>();
+    private Triplet<Block, Pair<Item, Integer>, Pair<Item, Integer>> outputs = new Triplet<>();
     private int uses = 0;
 
     public AdvancedOreMinerTileEntity() {
