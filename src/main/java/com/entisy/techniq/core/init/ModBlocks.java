@@ -10,6 +10,7 @@ import com.entisy.techniq.common.block.cable.energyCable.EnergyCableBlock;
 import com.entisy.techniq.common.block.cable.fluidCable.FluidCableBlock;
 import com.entisy.techniq.common.block.cable.itemCable.ItemCableBlock;
 import com.entisy.techniq.common.block.charger.ChargerBlock;
+import com.entisy.techniq.common.block.compressor.CompressorBlock;
 import com.entisy.techniq.common.block.crusher.CrusherBlock;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceBlock;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorBlock;
@@ -158,6 +159,8 @@ public class ModBlocks {
     public static final RegistryObject<SimpleMachineBlock> SOLAR_PANEL = register("solar_panel",
             SolarPanelBlock::new);
 
+    public static final RegistryObject<SimpleMachineBlock> COMPRESSOR = register("compressor",
+            CompressorBlock::new);
 
     public static final RegistryObject<SimpleBlock> RAINBOW_WOOL = register("rainbow_wool",
             () -> new SimpleBlock(AbstractBlock.Properties.copy(Blocks.WHITE_WOOL)));

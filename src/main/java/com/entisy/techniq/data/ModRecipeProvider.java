@@ -1,6 +1,7 @@
 package com.entisy.techniq.data;
 
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipeBuilder;
+import com.entisy.techniq.common.block.compressor.recipe.CompressorRecipeBuilder;
 import com.entisy.techniq.common.block.crusher.recipe.CrusherRecipeBuilder;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipeBuilder;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipeBuilder;
@@ -31,6 +32,7 @@ public class ModRecipeProvider extends RecipeProvider {
         final String p = "_from_powder";
         final String r = "_from_refinery";
         final String c = "_from_crusher";
+        final String co = "_from_compressor";
 
         ShapelessRecipeBuilder
                 .shapeless(ModItems.COPPER_INGOT.get(), 9)
@@ -261,6 +263,13 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.IRON_INGOT, 2, Items.COAL, 1)
                 .unlockedBy("has_item", has(Items.IRON_INGOT))
                 .save(consumer, "steel_ingot" + as);
+
+        // COMPRESSOR
+        CompressorRecipeBuilder
+                .smelting(Items.COAL_ORE)
+                .requires(ModItems.COAL_POWDER.get(), 9, Items.STONE, 1)
+                .unlockedBy("has_item", has(ModItems.COAL_POWDER.get()))
+                .save(consumer, "coal_ore" + co);
 
 //        CookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.ALUMINUM_ORE.get()), ModItems.ALUMINUM_INGOT.get(), 0.7F, 100).unlockedBy("has_item", has(ModBlocks.ALUMINUM_ORE.get())).save(consumer, modid("aluminium_ore_blasting"));
 

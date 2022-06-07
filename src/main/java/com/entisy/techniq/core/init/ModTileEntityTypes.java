@@ -9,6 +9,7 @@ import com.entisy.techniq.common.block.cable.energyCable.EnergyCableTileEntity;
 import com.entisy.techniq.common.block.cable.fluidCable.FluidCableTileEntity;
 import com.entisy.techniq.common.block.cable.itemCable.ItemCableTileEntity;
 import com.entisy.techniq.common.block.charger.ChargerTileEntity;
+import com.entisy.techniq.common.block.compressor.CompressorTileEntity;
 import com.entisy.techniq.common.block.crusher.CrusherTileEntity;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceTileEntity;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorTileEntity;
@@ -95,4 +96,8 @@ public class ModTileEntityTypes {
     public static final RegistryObject<TileEntityType<SolarPanelTileEntity>> SOLAR_PANEL_TILE_ENTITY = TILE_ENTITY_TYPES
             .register("solar_panel", () -> TileEntityType.Builder
                     .of(SolarPanelTileEntity::new, ModBlocks.SOLAR_PANEL.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<CompressorTileEntity>> COMPRESSOR_TILE_ENTITY = TILE_ENTITY_TYPES
+            .register("compressor", () -> TileEntityType.Builder
+                    .of(CompressorTileEntity::new, ModBlocks.COMPRESSOR.get()).build(null));
 }
