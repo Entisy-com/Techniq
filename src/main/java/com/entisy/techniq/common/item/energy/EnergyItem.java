@@ -26,18 +26,12 @@ import java.util.List;
 public class EnergyItem extends Item {
 
     private final int capacity;
-    private final int maxReceive;
-    private final int maxExtract;
-
-    public EnergyItem(int capacity,int maxReceive,int maxExtract) {
-        super(new Properties().tab(TechniqTab.TECHNIQ_TAB).stacksTo(1));
-        this.capacity = capacity;
-        this.maxReceive = maxReceive;
-        this.maxExtract = maxExtract;
-    }
+    private final int maxReceive = 15;
+    private final int maxExtract = 15;
 
     public EnergyItem(int capacity) {
-        this(capacity,15,15);
+        super(new Properties().tab(TechniqTab.TECHNIQ_TAB).stacksTo(1));
+        this.capacity = capacity;
     }
 
     @Override

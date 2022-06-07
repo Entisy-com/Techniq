@@ -16,6 +16,7 @@ import com.entisy.techniq.common.block.metalPress.MetalPressContainer;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerContainer;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerContainer;
 import com.entisy.techniq.common.block.refinery.RefineryContainer;
+import com.entisy.techniq.common.item.backpack.BackpackContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;
@@ -68,4 +69,7 @@ public class ModContainerTypes {
 
 	public static final RegistryObject<ContainerType<HarvesterContainer>> HARVESTER_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("harvester", () -> IForgeContainerType.create(HarvesterContainer::new));
+
+	public static final RegistryObject<ContainerType<BackpackContainer>> BACKPACK_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("backpack", () -> IForgeContainerType.create(BackpackContainer::new));
 }

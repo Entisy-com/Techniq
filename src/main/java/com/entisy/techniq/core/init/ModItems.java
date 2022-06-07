@@ -2,6 +2,7 @@ package com.entisy.techniq.core.init;
 
 import com.entisy.techniq.Techniq;
 import com.entisy.techniq.common.item.*;
+import com.entisy.techniq.common.item.backpack.BackpackItem;
 import com.entisy.techniq.common.item.upgrades.RangeUpgradeItem;
 import com.entisy.techniq.common.item.upgrades.SpeedUpgradeItem;
 import com.entisy.techniq.common.item.upgrades.UpgradeItem;
@@ -74,6 +75,7 @@ public class ModItems {
 			WrenchItem::new);
 	public static final RegistryObject<Item> BATTERY_ITEM = ITEMS.register("battery",() -> new BatteryItem());
 	public static final RegistryObject<Item> BATTERY_PACK_ITEM = ITEMS.register("battery_pack",() -> new BatteryPackItem());
+	public static final RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack",() -> new BackpackItem());
 
 	// OTHER
 	public static final RegistryObject<Item> DRILL = ITEMS.register("drill",

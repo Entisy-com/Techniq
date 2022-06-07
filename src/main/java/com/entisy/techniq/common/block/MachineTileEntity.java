@@ -72,7 +72,7 @@ public class MachineTileEntity extends TileEntity {
         if (nbt.contains("CustomName", Constants.NBT.TAG_STRING)) {
             name = ITextComponent.Serializer.fromJson(nbt.getString("CustomName"));
         }
-        NonNullList<ItemStack> inv = NonNullList.<ItemStack>withSize(this.inventory.getSlots(), ItemStack.EMPTY);
+        NonNullList<ItemStack> inv = NonNullList.withSize(this.inventory.getSlots(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt, inv);
         inventory.setNonNullList(inv);
         currentSmeltTime = nbt.getInt("CurrentSmeltTime");

@@ -112,21 +112,25 @@ public class RefineryTileEntity extends MachineTileEntity implements ITickableTi
     private void tryFillTank() {
         if (isFluidEmpty()) {
             if (inventory.getItem(1).getCount() < 16) {
-                fillTank();
+                if (registerAcceptableFluids().contains(inventory.getItem(0).getItem())) {
+                    fillTank();
+                }
             }
         } else {
             if (isSameFluid(getFluidStack(inventory.getItem(0)))) {
                 if (currentFluid < maxFluid && (maxFluid - currentFluid) >= 1000) {
                     if (inventory.getItem(1).getCount() < 16) {
-                        fillTank();
+                        if (registerAcceptableFluids().contains(inventory.getItem(0).getItem())) {
+                            fillTank();
+                        }
                     }
                 }
             }
         }
     }
 
-    private void registerAcceptableFluids() {
-        SimpleList<Item> list = new SimpleList<>(
+    private SimpleList<Item> registerAcceptableFluids() {
+        return new SimpleList<>(
                 Items.WATER_BUCKET,
                 Items.LAVA_BUCKET,
                 ModItems.OIL_BUCKET.get()
