@@ -18,6 +18,7 @@ import com.entisy.techniq.common.block.metalPress.MetalPressBlock;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerBlock;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerBlock;
 import com.entisy.techniq.common.block.refinery.RefineryBlock;
+import com.entisy.techniq.common.block.solarPanel.SolarPanelBlock;
 import com.entisy.techniq.common.block.waterSource.WaterSourceBlock;
 import com.entisy.techniq.core.tab.TechniqTab;
 import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
@@ -153,6 +154,9 @@ public class ModBlocks {
 
     public static final RegistryObject<SemiComplexMachineBlock> ADVANCED_ORE_MINER = register("advanced_ore_miner",
             AdvancedOreMinerBlock::new);
+
+    public static final RegistryObject<SimpleMachineBlock> SOLAR_PANEL = register("solar_panel",
+            SolarPanelBlock::new);
 
 
     public static final RegistryObject<SimpleBlock> RAINBOW_WOOL = register("rainbow_wool",

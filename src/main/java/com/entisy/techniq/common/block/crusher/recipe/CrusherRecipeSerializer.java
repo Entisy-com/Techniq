@@ -40,3 +40,4 @@ public class CrusherRecipeSerializer extends ForgeRegistryEntry<IRecipeSerialize
 		buffer.writeInt(recipe.getWorkTime());
 	}
 }
+
