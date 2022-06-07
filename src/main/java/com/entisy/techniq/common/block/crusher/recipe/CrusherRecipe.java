@@ -76,3 +76,4 @@ public class CrusherRecipe implements ICrusherRecipe {
 		return input.test(wrapper.getItem(0));
 	}
 }
+
