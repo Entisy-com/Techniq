@@ -34,7 +34,6 @@ public class EnergyCableNetworkManager {
                 if (network.isPresent()) {
                     EnergyCableNetwork net = network.orElseThrow(IllegalStateException::new);
                     if (net.contains(world, pos)) {
-//                    SilentMechanisms.LOGGER.debug("get network {}", network);
                         return network;
                     }
                 }

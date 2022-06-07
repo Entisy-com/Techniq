@@ -17,6 +17,7 @@ import com.entisy.techniq.common.block.metalPress.MetalPressTileEntity;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerTileEntity;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerTileEntity;
 import com.entisy.techniq.common.block.refinery.RefineryTileEntity;
+import com.entisy.techniq.common.block.solarPanel.SolarPanelTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -90,4 +91,8 @@ public class ModTileEntityTypes {
     public static final RegistryObject<TileEntityType<ChargerTileEntity>> CHARGER_TILE_ENTITY = TILE_ENTITY_TYPES
             .register("charger", () -> TileEntityType.Builder
                     .of(ChargerTileEntity::new, ModBlocks.CHARGER.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<SolarPanelTileEntity>> SOLAR_PANEL_TILE_ENTITY = TILE_ENTITY_TYPES
+            .register("solar_panel", () -> TileEntityType.Builder
+                    .of(SolarPanelTileEntity::new, ModBlocks.SOLAR_PANEL.get()).build(null));
 }
