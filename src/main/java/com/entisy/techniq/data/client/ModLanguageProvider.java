@@ -4,6 +4,7 @@ import com.entisy.techniq.Techniq;
 import com.entisy.techniq.core.init.ModBlocks;
 import com.entisy.techniq.core.init.ModFluids;
 import com.entisy.techniq.core.init.ModItems;
+import com.entisy.techniq.core.init.TechniqConfig;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.fluid.FlowingFluid;
@@ -19,9 +20,15 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup." + Techniq.MOD_ID + "_tab", "Techniq");
+        add("tooltip." + Techniq.MOD_ID + ".hidden", "hold \u00A7eSHIFT\u00A7r for more Information!");
+        add("tooltip." + Techniq.MOD_ID + ".lunar_panel", TechniqConfig.LUNAR_PANEL.get() + "TE/Tick");
+        add("tooltip." + Techniq.MOD_ID + ".solar_panel", TechniqConfig.SOLAR_PANEL.get() + "TE/Tick");
+        add("tooltip." + Techniq.MOD_ID + ".battery", "holds " + TechniqConfig.BATTERY_CAPACITY.get() + "TE");
+        add("tooltip." + Techniq.MOD_ID + ".battery_pack", "holds " + TechniqConfig.BATTERY_PACK_CAPACITY.get() + "TE");
 
         ModItems.getAllItems().forEach(item -> addItem(item));
         ModBlocks.getBlocks().forEach(block -> addBlock(block));
+        ModBlocks.getPanels().forEach(block -> addBlock(block));
         ModFluids.getFluids().forEach(fluid -> addFluid(fluid));
     }
 

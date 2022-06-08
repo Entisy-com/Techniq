@@ -10,6 +10,7 @@ import com.entisy.techniq.common.block.cable.energyCable.EnergyCableBlock;
 import com.entisy.techniq.common.block.cable.fluidCable.FluidCableBlock;
 import com.entisy.techniq.common.block.cable.itemCable.ItemCableBlock;
 import com.entisy.techniq.common.block.charger.ChargerBlock;
+import com.entisy.techniq.common.block.compressor.CompressorBlock;
 import com.entisy.techniq.common.block.crusher.CrusherBlock;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceBlock;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorBlock;
@@ -156,11 +157,14 @@ public class ModBlocks {
     public static final RegistryObject<SemiComplexMachineBlock> ADVANCED_ORE_MINER = register("advanced_ore_miner",
             AdvancedOreMinerBlock::new);
 
-    public static final RegistryObject<SimpleMachineBlock> SOLAR_PANEL = register("solar_panel",
+    public static final RegistryObject<PanelBlock> SOLAR_PANEL = register("solar_panel",
             SolarPanelBlock::new);
 
-    public static final RegistryObject<SimpleMachineBlock> LUNAR_PANEL = register("lunar_panel",
+    public static final RegistryObject<PanelBlock> LUNAR_PANEL = register("lunar_panel",
             LunarPanelBlock::new);
+
+    public static final RegistryObject<SemiComplexBlock> COMPRESSOR = register("compressor",
+            CompressorBlock::new);
 
 
     public static final RegistryObject<SimpleBlock> RAINBOW_WOOL = register("rainbow_wool",
@@ -221,7 +225,17 @@ public class ModBlocks {
     public static SimpleList<Block> getBlocks() {
         SimpleList<Block> ret = new SimpleList<>();
         BLOCKS.getEntries().forEach(b -> {
-            if (!(b.get() instanceof FlowingFluidBlock)) {
+            if (!(b.get() instanceof FlowingFluidBlock || b.get() instanceof PanelBlock)) {
+                ret.append(b.get());
+            }
+        });
+        return ret;
+    }
+
+    public static SimpleList<Block> getPanels() {
+        SimpleList<Block> ret = new SimpleList<>();
+        BLOCKS.getEntries().forEach(b -> {
+            if (b.get() instanceof PanelBlock) {
                 ret.append(b.get());
             }
         });

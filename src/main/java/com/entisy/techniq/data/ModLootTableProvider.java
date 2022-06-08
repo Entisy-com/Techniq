@@ -47,6 +47,7 @@ public class ModLootTableProvider extends LootTableProvider
         protected void addTables()
         {
             ModBlocks.getBlocks().forEach(b -> dropSelf(b));
+            ModBlocks.getPanels().forEach(b -> dropSelf(b));
         }
 
         @Override

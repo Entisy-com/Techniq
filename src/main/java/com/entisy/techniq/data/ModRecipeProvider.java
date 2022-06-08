@@ -1,6 +1,7 @@
 package com.entisy.techniq.data;
 
 import com.entisy.techniq.common.block.alloySmelter.recipe.AlloySmelterRecipeBuilder;
+import com.entisy.techniq.common.block.compressor.recipe.CompressorRecipeBuilder;
 import com.entisy.techniq.common.block.crusher.recipe.CrusherRecipeBuilder;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipeBuilder;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipeBuilder;
@@ -30,7 +31,8 @@ public class ModRecipeProvider extends RecipeProvider {
         final String as = "_from_alloy_smelter";
         final String p = "_from_powder";
         final String r = "_from_refinery";
-        final String c = "_from_crusher";
+        final String cr = "_from_crusher";
+        final String co = "_from_compressor";
 
         ShapelessRecipeBuilder
                 .shapeless(ModItems.COPPER_INGOT.get(), 9)
@@ -424,48 +426,97 @@ public class ModRecipeProvider extends RecipeProvider {
                 .smeltTime(200)
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.COAL_ORE))
-                .save(consumer, "coal_powder" + c);
+                .save(consumer, "coal_powder" + cr);
 
         CrusherRecipeBuilder.crushing(ModItems.GOLD_POWDER.get(), 2)
                 .requires(Items.GOLD_ORE)
                 .smeltTime(200)
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.GOLD_ORE))
-                .save(consumer, "gold_powder" + c);
+                .save(consumer, "gold_powder" + cr);
 
         CrusherRecipeBuilder.crushing(ModItems.IRON_POWDER.get(), 2)
                 .requires(Items.IRON_ORE)
                 .smeltTime(200)
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.IRON_ORE))
-                .save(consumer, "iron_powder" + c);
+                .save(consumer, "iron_powder" + cr);
 
         CrusherRecipeBuilder.crushing(ModItems.DIAMOND_POWDER.get(), 2)
                 .requires(Items.DIAMOND_ORE)
                 .smeltTime(200)
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.DIAMOND_ORE))
-                .save(consumer, "diamond_powder" + c);
+                .save(consumer, "diamond_powder" + cr);
 
         CrusherRecipeBuilder.crushing(ModItems.EMERALD_POWDER.get(), 2)
                 .requires(Items.EMERALD_ORE)
                 .smeltTime(200)
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.EMERALD_ORE))
-                .save(consumer, "emerald_powder" + c);
+                .save(consumer, "emerald_powder" + cr);
 
         CrusherRecipeBuilder.crushing(ModItems.QUARTZ_POWDER.get(), 2)
                 .requires(Items.NETHER_QUARTZ_ORE)
                 .smeltTime(200)
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.NETHER_QUARTZ_ORE))
-                .save(consumer, "quartz_powder" + c);
+                .save(consumer, "quartz_powder" + cr);
 
         CrusherRecipeBuilder.crushing(ModItems.LAPIS_POWDER.get(), 2)
                 .requires(Items.LAPIS_ORE)
                 .smeltTime(200)
                 .requiredEnergy(500)
                 .unlockedBy("has_item", has(Blocks.LAPIS_ORE))
-                .save(consumer, "lapis_powder" + c);
+                .save(consumer, "lapis_powder" + cr);
+
+        CompressorRecipeBuilder.compressing(Items.IRON_ORE)
+                .requires(ModItems.IRON_POWDER.get(), 9, Items.STONE, 1)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.IRON_POWDER.get()))
+                .save(consumer, "iron_ore" + co);
+
+        CompressorRecipeBuilder.compressing(Items.DIAMOND_ORE)
+                .requires(ModItems.DIAMOND_POWDER.get(), 9, Items.STONE, 1)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.IRON_POWDER.get()))
+                .save(consumer, "diamond_ore" + co);
+
+        CompressorRecipeBuilder.compressing(Items.EMERALD_ORE)
+                .requires(ModItems.EMERALD_POWDER.get(), 9, Items.STONE, 1)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.EMERALD_POWDER.get()))
+                .save(consumer, "emerald_ore" + co);
+
+        CompressorRecipeBuilder.compressing(Items.NETHER_QUARTZ_ORE)
+                .requires(ModItems.QUARTZ_POWDER.get(), 9, Items.STONE, 1)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.QUARTZ_POWDER.get()))
+                .save(consumer, "quartz_ore" + co);
+
+        CompressorRecipeBuilder.compressing(Items.LAPIS_ORE)
+                .requires(ModItems.LAPIS_POWDER.get(), 9, Items.STONE, 1)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.LAPIS_POWDER.get()))
+                .save(consumer, "lapis_ore" + co);
+
+        CompressorRecipeBuilder.compressing(Items.GOLD_ORE)
+                .requires(ModItems.GOLD_POWDER.get(), 9, Items.STONE, 1)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.GOLD_POWDER.get()))
+                .save(consumer, "gold_ore" + co);
+
+        CompressorRecipeBuilder.compressing(Items.COAL_ORE)
+                .requires(ModItems.COAL_POWDER.get(), 9, Items.STONE, 1)
+                .smeltTime(200)
+                .requiredEnergy(500)
+                .unlockedBy("has_item", has(ModItems.COAL_POWDER.get()))
+                .save(consumer, "coal_ore" + co);
     }
 }

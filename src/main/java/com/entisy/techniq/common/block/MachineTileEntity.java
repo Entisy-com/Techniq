@@ -44,8 +44,8 @@ public class MachineTileEntity extends TileEntity {
     public int maxEnergyReceive = 0;
     public int maxEnergyExtract = 0;
     public static int slots = 0;
-    public final EnergyStorageImpl energyStorage;
-    public final LazyOptional<IEnergyStorage> energy;
+    public EnergyStorageImpl energyStorage;
+    public LazyOptional<IEnergyStorage> energy;
     public final FluidStorageImpl fluidStorage;
     public final LazyOptional<IFluidStorage> fluid;
     public ITextComponent name;

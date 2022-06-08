@@ -1,0 +1,12 @@
+{
+  "type": "techniq:crusher",
+  "input": {
+    "item": "minecraft:nether_quartz_ore"
+  },
+  "output": {
+    "item": "techniq:quartz_powder",
+    "count": 2
+  },
+  "required_energy": 500,
+  "work_time": 200
+}

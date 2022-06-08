@@ -5,6 +5,7 @@
   "block.techniq.block_breaker": "Block Breaker",
   "block.techniq.block_placer": "Block Placer",
   "block.techniq.charger": "Charger",
+  "block.techniq.compressor": "Compressor",
   "block.techniq.copper_block": "Copper Block",
   "block.techniq.copper_ore": "Copper Ore",
   "block.techniq.crusher": "Crusher",
@@ -24,6 +25,7 @@
   "block.techniq.harvester": "Harvester",
   "block.techniq.infinite_water_source": "Infinite Water Source",
   "block.techniq.item_cable": "Item Cable",
+  "block.techniq.lunar_panel": "Lunar Panel",
   "block.techniq.metal_press": "Metal Press",
   "block.techniq.nether_coal_ore": "Nether Coal Ore",
   "block.techniq.nether_copper_ore": "Nether Copper Ore",
@@ -37,8 +39,10 @@
   "block.techniq.rainbow_wool": "Rainbow Wool",
   "block.techniq.refinery": "Refinery",
   "block.techniq.simple_ore_miner": "Simple Ore Miner",
+  "block.techniq.solar_panel": "Solar Panel",
   "block.techniq.steel_block": "Steel Block",
   "fluid.techniq.oil": "Oil",
+  "item.techniq.backpack": "Backpack",
   "item.techniq.basic_machine_frame": "Basic Machine Frame",
   "item.techniq.battery": "Battery",
   "item.techniq.battery_pack": "Battery Pack",
@@ -75,5 +79,10 @@
   "item.techniq.steel_plate": "Steel Plate",
   "item.techniq.steel_rod": "Steel Rod",
   "item.techniq.wrench": "Wrench",
-  "itemGroup.techniq_tab": "Techniq"
+  "itemGroup.techniq_tab": "Techniq",
+  "tooltip.techniq.battery": "holds 3000TE",
+  "tooltip.techniq.battery_pack": "holds 6000TE",
+  "tooltip.techniq.hidden": "hold \u00A7eSHIFT\u00A7r for more Information!",
+  "tooltip.techniq.lunar_panel": "10TE/Tick",
+  "tooltip.techniq.solar_panel": "15TE/Tick"
 }

@@ -2,6 +2,7 @@ package com.entisy.techniq.data.client;
 
 import com.entisy.techniq.Techniq;
 
+import com.entisy.techniq.common.block.PanelBlock;
 import com.entisy.techniq.core.init.ModBlocks;
 import com.entisy.techniq.core.init.ModItems;
 import net.minecraft.block.Block;
@@ -25,7 +26,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		ModBlocks.getBlocks().forEach(block -> block(block));
+		ModBlocks.getSimpleBlocks().forEach(block -> block(block));
+		ModBlocks.getComplexBlocks().forEach(block -> block(block));
+		ModBlocks.getSemiComplexBlocks().forEach(block -> block(block));
 		ModItems.getItems().forEach(item -> item(item));
 	}
 

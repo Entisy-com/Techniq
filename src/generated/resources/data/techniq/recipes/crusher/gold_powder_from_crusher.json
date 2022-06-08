@@ -1,0 +1,12 @@
+{
+  "type": "techniq:crusher",
+  "input": {
+    "item": "minecraft:gold_ore"
+  },
+  "output": {
+    "item": "techniq:gold_powder",
+    "count": 2
+  },
+  "required_energy": 500,
+  "work_time": 200
+}

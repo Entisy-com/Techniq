@@ -1,0 +1,12 @@
+{
+  "type": "techniq:crusher",
+  "input": {
+    "item": "minecraft:emerald_ore"
+  },
+  "output": {
+    "item": "techniq:emerald_powder",
+    "count": 2
+  },
+  "required_energy": 500,
+  "work_time": 200
+}

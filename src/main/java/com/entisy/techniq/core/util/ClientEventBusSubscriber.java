@@ -7,6 +7,7 @@ import com.entisy.techniq.common.block.battery.BatteryScreen;
 import com.entisy.techniq.common.block.blockBreaker.BlockBreakerScreen;
 import com.entisy.techniq.common.block.blockPlacer.BlockPlacerScreen;
 import com.entisy.techniq.common.block.charger.ChargerScreen;
+import com.entisy.techniq.common.block.compressor.CompressorScreen;
 import com.entisy.techniq.common.block.crusher.CrusherScreen;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceScreen;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorScreen;
@@ -50,6 +51,7 @@ public class ClientEventBusSubscriber {
 		ScreenManager.register(ModContainerTypes.HARVESTER_CONTAINER_TYPE.get(), HarvesterScreen::new);
 		ScreenManager.register(ModContainerTypes.CHARGER_CONTAINER_TYPE.get(), ChargerScreen::new);
 		ScreenManager.register(ModContainerTypes.CRUSHER_CONTAINER_TYPE.get(), CrusherScreen::new);
+		ScreenManager.register(ModContainerTypes.COMPRESSOR_CONTAINER_TYPE.get(), CompressorScreen::new);
 
 		ScreenManager.register(ModContainerTypes.BACKPACK_CONTAINER_TYPE.get(), BackpackScreen::new);
 
