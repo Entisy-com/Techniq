@@ -1,0 +1,18 @@
+{
+  "type": "techniq:compressor",
+  "ingredients": [
+    {
+      "item": "techniq:coal_powder",
+      "count": 9
+    },
+    {
+      "item": "minecraft:stone",
+      "count": 1
+    }
+  ],
+  "output": {
+    "item": "minecraft:coal_ore"
+  },
+  "required_energy": 500,
+  "smelt_time": 200
+}
