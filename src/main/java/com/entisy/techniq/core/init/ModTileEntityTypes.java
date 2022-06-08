@@ -13,6 +13,7 @@ import com.entisy.techniq.common.block.crusher.CrusherTileEntity;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceTileEntity;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorTileEntity;
 import com.entisy.techniq.common.block.harvester.HarvesterTileEntity;
+import com.entisy.techniq.common.block.lunarPanel.LunarPanelTileEntity;
 import com.entisy.techniq.common.block.metalPress.MetalPressTileEntity;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerTileEntity;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerTileEntity;
@@ -95,4 +96,8 @@ public class ModTileEntityTypes {
     public static final RegistryObject<TileEntityType<SolarPanelTileEntity>> SOLAR_PANEL_TILE_ENTITY = TILE_ENTITY_TYPES
             .register("solar_panel", () -> TileEntityType.Builder
                     .of(SolarPanelTileEntity::new, ModBlocks.SOLAR_PANEL.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<LunarPanelTileEntity>> LUNAR_PANEL_TILE_ENTITY = TILE_ENTITY_TYPES
+            .register("lunar_panel", () -> TileEntityType.Builder
+                    .of(LunarPanelTileEntity::new, ModBlocks.LUNAR_PANEL.get()).build(null));
 }

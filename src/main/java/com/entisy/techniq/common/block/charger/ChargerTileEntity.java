@@ -47,7 +47,7 @@ public class ChargerTileEntity extends MachineTileEntity implements ITickableTil
             energy.ifPresent(iEnergyStorage -> {
                 currentEnergy = energyStorage.getEnergyStored();
             });
-            if (currentEnergy > 0) {
+            if (currentEnergy > 7) {
                 if (isValidItem(inventory.getItem(0))) {
                     if (((EnergyItem) inventory.getItem(0).getItem()).isChargable()) {
                         IEnergyStorage itemEnergy = inventory.getItem(0).getCapability(CapabilityEnergy.ENERGY).orElseThrow(IllegalStateException::new);
@@ -55,7 +55,7 @@ public class ChargerTileEntity extends MachineTileEntity implements ITickableTil
                             inventory.getItem(0).getCapability(CapabilityEnergy.ENERGY)
                                     .ifPresent(e -> e.receiveEnergy(7, false));
                             energy.ifPresent(iEnergyStorage -> {
-                                energyStorage.setEnergyDirectly(energyStorage.getEnergyStored() - 15);
+                                energyStorage.setEnergyDirectly(energyStorage.getEnergyStored() - 7);
                                 currentEnergy = energyStorage.getEnergyStored();
                             });
                             level.setBlockAndUpdate(getBlockPos(), getBlockState());

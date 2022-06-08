@@ -14,6 +14,7 @@ import com.entisy.techniq.common.block.crusher.CrusherBlock;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceBlock;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorBlock;
 import com.entisy.techniq.common.block.harvester.HarvesterBlock;
+import com.entisy.techniq.common.block.lunarPanel.LunarPanelBlock;
 import com.entisy.techniq.common.block.metalPress.MetalPressBlock;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerBlock;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerBlock;
@@ -157,6 +158,9 @@ public class ModBlocks {
 
     public static final RegistryObject<SimpleMachineBlock> SOLAR_PANEL = register("solar_panel",
             SolarPanelBlock::new);
+
+    public static final RegistryObject<SimpleMachineBlock> LUNAR_PANEL = register("lunar_panel",
+            LunarPanelBlock::new);
 
 
     public static final RegistryObject<SimpleBlock> RAINBOW_WOOL = register("rainbow_wool",

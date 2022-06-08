@@ -68,25 +68,34 @@ public class ChargerContainer extends Container {
     }
 
     @Override
-	public ItemStack quickMoveStack(PlayerEntity player, int index) {
-		ItemStack stack = ItemStack.EMPTY;
-		Slot slot = slots.get(index);
-		if (slot != null && slot.hasItem()) {
-			ItemStack stack1 = slot.getItem();
-			stack = stack1.copy();
-			if (index < ChargerTileEntity.slots
-					&& !moveItemStackTo(stack1, ChargerTileEntity.slots, slots.size(), true)) {
-				return ItemStack.EMPTY;
-			}
-			if (!moveItemStackTo(stack1, 0, ChargerTileEntity.slots, false)) {
-				return ItemStack.EMPTY;
-			}
-			if (stack1.isEmpty()) {
-				slot.set(ItemStack.EMPTY);
-			} else {
-				slot.setChanged();
-			}
-		}
-		return stack;
-	}
+    public ItemStack quickMoveStack(PlayerEntity player, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+
+            final int inventorySize = 1;
+            final int playerInventoryEnd = inventorySize + 27;
+            final int playerHotbarEnd = playerInventoryEnd + 9;
+
+            if (index != 0) {
+                if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(itemstack1, inventorySize, playerHotbarEnd, false)) {
+                return ItemStack.EMPTY;
+            }
+            if (itemstack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot.onTake(player, itemstack1);
+        }
+        return itemstack;
+    }
 }

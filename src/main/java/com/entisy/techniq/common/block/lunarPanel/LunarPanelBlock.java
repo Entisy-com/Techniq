@@ -1,4 +1,4 @@
-package com.entisy.techniq.common.block.solarPanel;
+package com.entisy.techniq.common.block.lunarPanel;
 
 import com.entisy.techniq.common.block.SimpleMachineBlock;
 import com.entisy.techniq.core.init.ModTileEntityTypes;
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class SolarPanelBlock extends SimpleMachineBlock {
+public class LunarPanelBlock extends SimpleMachineBlock {
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;
@@ -21,6 +21,6 @@ public class SolarPanelBlock extends SimpleMachineBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return ModTileEntityTypes.SOLAR_PANEL_TILE_ENTITY.get().create();
+        return ModTileEntityTypes.LUNAR_PANEL_TILE_ENTITY.get().create();
     }
 }
