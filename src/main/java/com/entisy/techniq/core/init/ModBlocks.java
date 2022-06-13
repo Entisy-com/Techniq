@@ -115,6 +115,27 @@ public class ModBlocks {
     public static final RegistryObject<FlowingFluidBlock> OIL = registerFluid(
             "oil", () -> ModFluids.OIL);
 
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_IRON = registerFluid(
+            "molten_iron", () -> ModFluids.IRON);
+
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_DIAMOND = registerFluid(
+            "molten_diamond", () -> ModFluids.DIAMOND);
+
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_GOLD = registerFluid(
+            "molten_gold", () -> ModFluids.GOLD);
+
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_COAL = registerFluid(
+            "molten_coal", () -> ModFluids.COAL);
+
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_EMERALD = registerFluid(
+            "molten_emerald", () -> ModFluids.EMERALD);
+
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_REDSTONE = registerFluid(
+            "molten_redstone", () -> ModFluids.REDSTONE);
+
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_LAPIS = registerFluid(
+            "molten_lapis", () -> ModFluids.LAPIS);
+
     /*
      * MACHINE
      */

@@ -28,6 +28,7 @@ public class Techniq {
         ModTileEntityTypes.TILE_ENTITY_TYPES.register(bus);
         ModContainerTypes.CONTAINER_TYPES.register(bus);
         ModRecipes.RECIPE_SERIALIZERS.register(bus);
+        ModKeybinds.register();
 
         bus.addGenericListener(Fluid.class, ModFluids::registerFluids);
 
