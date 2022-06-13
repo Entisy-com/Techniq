@@ -14,8 +14,4 @@ public class UpgradeItem extends Item {
     public UpgradeType getUpgradeType() {
         return UpgradeType.NONE;
     }
-
-    public static int getUpgradeStage() {
-        return 0;
-    }
 }

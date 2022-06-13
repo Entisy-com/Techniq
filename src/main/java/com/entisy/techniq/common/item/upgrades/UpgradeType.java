@@ -4,5 +4,6 @@ public enum UpgradeType {
     RANGE,
     SPEED,
     EFFICIENCY,
+    CAPACITY,
     NONE;
 }
