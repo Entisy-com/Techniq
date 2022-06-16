@@ -1,5 +1,6 @@
 package com.entisy.techniq;
 
+import com.entisy.techniq.common.events.PlayerEvents;
 import com.entisy.techniq.core.init.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraftforge.common.MinecraftForge;

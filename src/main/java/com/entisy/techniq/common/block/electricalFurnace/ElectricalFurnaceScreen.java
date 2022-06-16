@@ -51,7 +51,9 @@ public class ElectricalFurnaceScreen extends ContainerScreen<ElectricalFurnaceCo
 		blit(stack, getGuiLeft() + 154, getGuiTop() + (50 - pixel) + 18, 176, (50 - pixel), 12, 50);
 
 		// draw progress bar/arrow
-		if (getMenu().tileEntity.getRecipe() != null) blit(stack, leftPos + 80, topPos + 35, 0, 166, getMenu().getSmeltProgressionScaled(), 16);
+		if (getMenu().tileEntity.getRecipe() != null) {
+			blit(stack, leftPos + 80, topPos + 35, 0, 166, getMenu().getSmeltProgressionScaled(), 16);
+		}
 	}
 
 	@Override

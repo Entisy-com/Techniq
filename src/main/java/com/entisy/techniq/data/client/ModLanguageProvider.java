@@ -20,7 +20,7 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup." + Techniq.MOD_ID + "_tab", "Techniq");
-        add("tooltip." + Techniq.MOD_ID + ".hidden", "hold \u00A7eSHIFT\u00A7r for more Information!");
+        add("tooltip." + Techniq.MOD_ID + ".hidden", "hold \u00A7eSHIFT\u00A7r for Info!");
         add("tooltip." + Techniq.MOD_ID + ".lunar_panel", TechniqConfig.LUNAR_PANEL.get() + "TE/Tick");
         add("tooltip." + Techniq.MOD_ID + ".solar_panel", TechniqConfig.SOLAR_PANEL.get() + "TE/Tick");
         add("tooltip." + Techniq.MOD_ID + ".battery", "holds " + TechniqConfig.BATTERY_CAPACITY.get() + "TE");

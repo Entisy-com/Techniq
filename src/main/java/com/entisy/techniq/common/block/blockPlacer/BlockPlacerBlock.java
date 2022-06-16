@@ -42,8 +42,7 @@ public class BlockPlacerBlock extends ComplexMachineBlock {
     }
 
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
-                                BlockRayTraceResult rayTrace) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTrace) {
         if (world != null && !world.isClientSide()) {
             TileEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof BlockPlacerTileEntity) {

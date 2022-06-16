@@ -43,7 +43,7 @@ public class ItemEnergyStorageImpl extends EnergyStorage {
         return stack.getOrCreateTag().getInt("Energy");
     }
 
-    private void setEnergyStored(int amount) {
+    public void setEnergyStored(int amount) {
         stack.getOrCreateTag().putInt("Energy", amount);
     }
 }

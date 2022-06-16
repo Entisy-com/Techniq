@@ -53,9 +53,9 @@ public class ChargerTileEntity extends MachineTileEntity implements ITickableTil
                         IEnergyStorage itemEnergy = inventory.getItem(0).getCapability(CapabilityEnergy.ENERGY).orElseThrow(IllegalStateException::new);
                         if (itemEnergy.getEnergyStored() < itemEnergy.getMaxEnergyStored()) {
                             inventory.getItem(0).getCapability(CapabilityEnergy.ENERGY)
-                                    .ifPresent(e -> e.receiveEnergy(7, false));
+                                    .ifPresent(e -> e.receiveEnergy(10, false));
                             energy.ifPresent(iEnergyStorage -> {
-                                energyStorage.setEnergyDirectly(energyStorage.getEnergyStored() - 7);
+                                energyStorage.setEnergyDirectly(energyStorage.getEnergyStored() - 10);
                                 currentEnergy = energyStorage.getEnergyStored();
                             });
                             level.setBlockAndUpdate(getBlockPos(), getBlockState());

@@ -82,7 +82,7 @@
   "itemGroup.techniq_tab": "Techniq",
   "tooltip.techniq.battery": "holds 3000TE",
   "tooltip.techniq.battery_pack": "holds 6000TE",
-  "tooltip.techniq.hidden": "hold \u00A7eSHIFT\u00A7r for more Information!",
+  "tooltip.techniq.hidden": "hold \u00A7eSHIFT\u00A7r for Info!",
   "tooltip.techniq.lunar_panel": "10TE/Tick",
   "tooltip.techniq.solar_panel": "15TE/Tick"
 }

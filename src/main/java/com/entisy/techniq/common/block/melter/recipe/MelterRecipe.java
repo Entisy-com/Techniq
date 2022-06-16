@@ -52,7 +52,7 @@ public class MelterRecipe implements IMelterRecipe{
 
     @Override
     public ItemStack assemble(RecipeWrapper wrapper) {
-        return output;
+        return ItemStack.EMPTY;
     }
 
 
