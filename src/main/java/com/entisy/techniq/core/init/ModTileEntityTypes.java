@@ -15,6 +15,7 @@ import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceTileEn
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorTileEntity;
 import com.entisy.techniq.common.block.harvester.HarvesterTileEntity;
 import com.entisy.techniq.common.block.lunarPanel.LunarPanelTileEntity;
+import com.entisy.techniq.common.block.melter.MelterTileEntity;
 import com.entisy.techniq.common.block.metalPress.MetalPressTileEntity;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerTileEntity;
 import com.entisy.techniq.common.block.oreMiner.simpleOreMiner.SimpleOreMinerTileEntity;
@@ -105,4 +106,9 @@ public class ModTileEntityTypes {
     public static final RegistryObject<TileEntityType<CompressorTileEntity>> COMPRESSOR_TILE_ENTITY = TILE_ENTITY_TYPES
             .register("compressor", () -> TileEntityType.Builder
                     .of(CompressorTileEntity::new, ModBlocks.COMPRESSOR.get()).build(null));
+
+
+    public static final RegistryObject<TileEntityType<MelterTileEntity>> MELTER_TILE_ENTITY = TILE_ENTITY_TYPES
+            .register("compressor", () -> TileEntityType.Builder
+                    .of(MelterTileEntity::new, ModBlocks.MELTER.get()).build(null));
 }

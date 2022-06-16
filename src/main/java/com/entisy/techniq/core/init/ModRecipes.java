@@ -13,6 +13,9 @@ import com.entisy.techniq.common.block.crusher.recipe.ICrusherRecipe;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipe;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.ElectricalFurnaceRecipeSerializer;
 import com.entisy.techniq.common.block.electricalFurnace.recipe.IElectricalFurnaceRecipe;
+import com.entisy.techniq.common.block.melter.recipe.IMelterRecipe;
+import com.entisy.techniq.common.block.melter.recipe.MelterRecipe;
+import com.entisy.techniq.common.block.melter.recipe.MelterRecipeSerializer;
 import com.entisy.techniq.common.block.metalPress.recipe.IMetalPressRecipe;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipe;
 import com.entisy.techniq.common.block.metalPress.recipe.MetalPressRecipeSerializer;
@@ -57,6 +60,12 @@ public class ModRecipes {
     public static final IRecipeType<ICompressorRecipe> COMPRESSOR_TYPE = registerType(
             ICompressorRecipe.RECIPE_TYPE_ID);
 
+
+    // MELTER
+    public static final IRecipeSerializer<MelterRecipe> MELTER_RECIPE_SERIALIZER = new MelterRecipeSerializer();
+    public static final IRecipeType<IMelterRecipe> MELTER_TYPE = registerType(
+            IMelterRecipe.RECIPE_TYPE_ID);
+
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister
             .create(ForgeRegistries.RECIPE_SERIALIZERS, Techniq.MOD_ID);
 
@@ -73,6 +82,8 @@ public class ModRecipes {
             .register("crusher", () -> CRUSHER_RECIPE_SERIALIZER);
     public static final RegistryObject<IRecipeSerializer<?>> COMPRESSOR_SERIALIZER = RECIPE_SERIALIZERS
             .register("compressor", () -> COMPRESSOR_RECIPE_SERIALIZER);
+    public static final RegistryObject<IRecipeSerializer<?>> MELTER_SERIALIZER = RECIPE_SERIALIZERS
+            .register("melter", () -> MELTER_RECIPE_SERIALIZER);
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static <T extends IRecipeType> T registerType(ResourceLocation recipeTypeId) {

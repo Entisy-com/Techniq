@@ -12,6 +12,7 @@ import com.entisy.techniq.common.block.crusher.CrusherContainer;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceContainer;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorContainer;
 import com.entisy.techniq.common.block.harvester.HarvesterContainer;
+import com.entisy.techniq.common.block.melter.MelterContainer;
 import com.entisy.techniq.common.block.metalPress.MetalPressContainer;
 
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerContainer;
@@ -76,4 +77,7 @@ public class ModContainerTypes {
 
 	public static final RegistryObject<ContainerType<CompressorContainer>> COMPRESSOR_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("compressor", () -> IForgeContainerType.create(CompressorContainer::new));
+
+	public static final RegistryObject<ContainerType<MelterContainer>> MELTER_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("melter", () -> IForgeContainerType.create(MelterContainer::new));
 }

@@ -5,7 +5,6 @@ import com.entisy.techniq.common.slots.UpgradeSlot;
 import com.entisy.techniq.core.init.ModBlocks;
 import com.entisy.techniq.core.init.ModContainerTypes;
 import com.entisy.techniq.core.util.FunctionalIntReferenceHolder;
-import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
