@@ -92,13 +92,13 @@ public class BackpackContainer extends Container {
         //backpack
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
-                addSlot(new BackpackSlot(inv, column + row * 9, startX + column * slotSizePlus2, startY + row * slotSizePlus2));
+                addSlot(new BackpackSlot(inv, 4 +(column + row * 9 + 9), startX + column * slotSizePlus2, startY + row * slotSizePlus2));
             }
         }
         //inventory
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
-                addSlot(new Slot(inventory, column + row * 9 + 9, startX + column * slotSizePlus2, inventoryY + row * slotSizePlus2));
+                addSlot(new Slot(inventory, 4 + 36 +(column + row * 9 + 9), startX + column * slotSizePlus2, inventoryY + row * slotSizePlus2));
             }
         }
         //hotbar

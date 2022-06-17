@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BackpackScreen extends ContainerScreen<BackpackContainer> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(Techniq.MOD_ID,
-            "textures/item/backpack/gui.png");
+            "textures/item/backpack/powered_gui.png");
 
     private final BackpackContainer container;
 

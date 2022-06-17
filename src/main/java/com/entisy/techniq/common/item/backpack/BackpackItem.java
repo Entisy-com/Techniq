@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 
 public class BackpackItem extends EnergyItem implements ITickable, INamedContainerProvider, IInventory {
 
-    private static final int slots = 36;
+    private static final int slots = 40;
     private static NonNullList<ItemStack> items;
     private static SimpleItemHandler inventory;
     private static boolean dirty = false;
