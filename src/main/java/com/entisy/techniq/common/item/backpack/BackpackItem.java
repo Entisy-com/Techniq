@@ -3,6 +3,8 @@ package com.entisy.techniq.common.item.backpack;
 import com.entisy.techniq.Techniq;
 import com.entisy.techniq.common.item.SimpleItemHandler;
 import com.entisy.techniq.common.item.energy.EnergyItem;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleList;
+import com.entisy.techniq.core.util.entisy.betterLists.SimpleMap;
 import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,6 +52,13 @@ public class BackpackItem extends EnergyItem implements ITickable, INamedContain
         stack = player.getItemInHand(hand);
 
         load(stack.getOrCreateTag());
+
+        SimpleMap<ItemStack, Integer> playerInventory = new SimpleMap<>();
+
+        for (int i = 0; i < player.inventory.getContainerSize(); i++) {
+            playerInventory.append(player.inventory.getItem(i), i);
+            inventory.insertItem(i, player.inventory.getItem(i), false);
+        }
 
         if (world != null && !world.isClientSide()) {
             NetworkHooks.openGui((ServerPlayerEntity) player, this);

@@ -15,6 +15,13 @@ import java.util.function.Supplier;
 public class ModFluids {
     public static FlowingFluid FLOWING_OIL;
     public static FlowingFluid OIL;
+    public static FlowingFluid IRON;
+    public static FlowingFluid DIAMOND;
+    public static FlowingFluid GOLD;
+    public static FlowingFluid LAPIS;
+    public static FlowingFluid COAL;
+    public static FlowingFluid REDSTONE;
+    public static FlowingFluid EMERALD;
 
     public static void registerFluids(RegistryEvent.Register<Fluid> event) {
         ForgeFlowingFluid.Properties oilProps = properties("oil", () -> OIL, () -> FLOWING_OIL)
@@ -22,6 +29,27 @@ public class ModFluids {
                 .bucket(() -> ModItems.OIL_BUCKET.get());
         FLOWING_OIL = register("flowing_oil", new ForgeFlowingFluid.Flowing(oilProps));
         OIL = register("oil", new ForgeFlowingFluid.Source(oilProps));
+
+        ForgeFlowingFluid.Properties ironProps = properties("molten_iron", () -> IRON, () -> IRON);
+        IRON = register("molten_iron", new ForgeFlowingFluid.Source(ironProps));
+
+        ForgeFlowingFluid.Properties diamondProps = properties("molten_diamond", () -> DIAMOND, () -> DIAMOND);
+        DIAMOND = register("molten_diamond", new ForgeFlowingFluid.Source(diamondProps));
+
+        ForgeFlowingFluid.Properties goldProps = properties("molten_gold", () -> GOLD, () -> GOLD);
+        GOLD = register("molten_gold", new ForgeFlowingFluid.Source(goldProps));
+
+        ForgeFlowingFluid.Properties lapisProps = properties("molten_lapis", () -> LAPIS, () -> LAPIS);
+        LAPIS = register("molten_lapis", new ForgeFlowingFluid.Source(lapisProps));
+
+        ForgeFlowingFluid.Properties coalProps = properties("molten_coal", () -> COAL, () -> COAL);
+        COAL = register("molten_coal", new ForgeFlowingFluid.Source(coalProps));
+
+        ForgeFlowingFluid.Properties redstoneProps = properties("molten_redstone", () -> REDSTONE, () -> REDSTONE);
+        REDSTONE = register("molten_redstone", new ForgeFlowingFluid.Source(redstoneProps));
+
+        ForgeFlowingFluid.Properties emeraldProps = properties("molten_emerald", () -> EMERALD, () -> EMERALD);
+        EMERALD = register("molten_emerald", new ForgeFlowingFluid.Source(emeraldProps));
     }
 
     private static <T extends Fluid> T register(String name, T fluid) {
