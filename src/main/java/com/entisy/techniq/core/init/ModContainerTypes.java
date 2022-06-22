@@ -10,6 +10,7 @@ import com.entisy.techniq.common.block.charger.ChargerContainer;
 import com.entisy.techniq.common.block.compressor.CompressorContainer;
 import com.entisy.techniq.common.block.crusher.CrusherContainer;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceContainer;
+import com.entisy.techniq.common.block.fluidStorage.FluidStorageContainer;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorContainer;
 import com.entisy.techniq.common.block.harvester.HarvesterContainer;
 import com.entisy.techniq.common.block.melter.MelterContainer;
@@ -80,4 +81,7 @@ public class ModContainerTypes {
 
 	public static final RegistryObject<ContainerType<MelterContainer>> MELTER_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("melter", () -> IForgeContainerType.create(MelterContainer::new));
+
+	public static final RegistryObject<ContainerType<FluidStorageContainer>> FLUID_STORAGE_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("fluid_storage", () -> IForgeContainerType.create(FluidStorageContainer::new));
 }

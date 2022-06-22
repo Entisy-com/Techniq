@@ -12,6 +12,7 @@ import com.entisy.techniq.common.block.charger.ChargerTileEntity;
 import com.entisy.techniq.common.block.compressor.CompressorTileEntity;
 import com.entisy.techniq.common.block.crusher.CrusherTileEntity;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceTileEntity;
+import com.entisy.techniq.common.block.fluidStorage.FluidStorageTileEntity;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorTileEntity;
 import com.entisy.techniq.common.block.harvester.HarvesterTileEntity;
 import com.entisy.techniq.common.block.lunarPanel.LunarPanelTileEntity;
@@ -107,8 +108,11 @@ public class ModTileEntityTypes {
             .register("compressor", () -> TileEntityType.Builder
                     .of(CompressorTileEntity::new, ModBlocks.COMPRESSOR.get()).build(null));
 
+    public static final RegistryObject<TileEntityType<FluidStorageTileEntity>> FLUID_STORAGE_TILE_ENTITY = TILE_ENTITY_TYPES
+            .register("fluid_storage", () -> TileEntityType.Builder
+                    .of(FluidStorageTileEntity::new, ModBlocks.FLUID_STORAGE.get()).build(null));
 
     public static final RegistryObject<TileEntityType<MelterTileEntity>> MELTER_TILE_ENTITY = TILE_ENTITY_TYPES
-            .register("compressor", () -> TileEntityType.Builder
+            .register("melter", () -> TileEntityType.Builder
                     .of(MelterTileEntity::new, ModBlocks.MELTER.get()).build(null));
 }

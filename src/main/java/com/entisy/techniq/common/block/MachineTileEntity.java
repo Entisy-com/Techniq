@@ -43,6 +43,8 @@ public class MachineTileEntity extends TileEntity {
 
     public int maxEnergyReceive = 0;
     public int maxEnergyExtract = 0;
+    public int maxFluidReceive = 0;
+    public int maxFluidExtract = 0;
     public static int slots = 0;
     public EnergyStorageImpl energyStorage;
     public LazyOptional<IEnergyStorage> energy;
@@ -59,6 +61,8 @@ public class MachineTileEntity extends TileEntity {
         MachineTileEntity.slots = slots;
         this.maxEnergyReceive = maxReceive;
         this.maxEnergyExtract = maxExtract;
+        this.maxFluidReceive = maxReceive;
+        this.maxFluidExtract = maxExtract;
         inventory = new MachineBlockItemHandler(slots);
         energyStorage = createEnergy(maxEnergy);
         energy = LazyOptional.of(() -> energyStorage);

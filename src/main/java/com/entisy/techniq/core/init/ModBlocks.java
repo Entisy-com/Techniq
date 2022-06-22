@@ -13,6 +13,7 @@ import com.entisy.techniq.common.block.charger.ChargerBlock;
 import com.entisy.techniq.common.block.compressor.CompressorBlock;
 import com.entisy.techniq.common.block.crusher.CrusherBlock;
 import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceBlock;
+import com.entisy.techniq.common.block.fluidStorage.FluidStorageBlock;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorBlock;
 import com.entisy.techniq.common.block.harvester.HarvesterBlock;
 import com.entisy.techniq.common.block.lunarPanel.LunarPanelBlock;
@@ -190,6 +191,9 @@ public class ModBlocks {
 
     public static final RegistryObject<SimpleMachineBlock> MELTER = register("melter",
             MelterBlock::new);
+
+    public static final RegistryObject<SemiComplexMachineBlock> FLUID_STORAGE = register("fluid_storage",
+            FluidStorageBlock::new);
 
 
 
