@@ -14,6 +14,9 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class MelterContainer extends Container {
     private final IWorldPosCallable canInteractWithCallable;
     public FunctionalIntReferenceHolder currentSmeltTime;
     public FunctionalIntReferenceHolder currentEnergy;
+    public FunctionalIntReferenceHolder currentFluid;
     public static List<Slot> slotList = new ArrayList<>();
 
     public MelterContainer(final int id, final PlayerInventory inv, final MelterTileEntity tileEntity) {
@@ -37,6 +41,8 @@ public class MelterContainer extends Container {
         final int slotSizePlus2 = 18;
         final int startX = 8;
 
+
+        addSlot(new SlotItemHandler(tileEntity.getInventory(), 0,46,36));
 
         {
             slotList = this.slots;
@@ -57,6 +63,7 @@ public class MelterContainer extends Container {
 
         addDataSlot(currentSmeltTime = new FunctionalIntReferenceHolder(() -> tileEntity.currentSmeltTime, value -> tileEntity.currentSmeltTime = value));
         addDataSlot(currentEnergy = new FunctionalIntReferenceHolder(() -> tileEntity.currentEnergy, value -> tileEntity.currentEnergy = value));
+        addDataSlot(currentFluid = new FunctionalIntReferenceHolder(() -> tileEntity.currentFluid, value -> tileEntity.currentFluid = value));
     }
 
     public MelterContainer(final int id, final PlayerInventory inv, final PacketBuffer buffer) {
@@ -74,6 +81,11 @@ public class MelterContainer extends Container {
 
     @Override
     public boolean stillValid(PlayerEntity player) {
-        return stillValid(canInteractWithCallable, player, ModBlocks.HARVESTER.get());
+        return stillValid(canInteractWithCallable, player, ModBlocks.MELTER.get());
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getProgressionScaled() {
+        return currentSmeltTime.get() != 0 && tileEntity.getMaxWorkTime() != 0 ? currentSmeltTime.get() * 16 / tileEntity.getMaxWorkTime() : 0;
     }
 }

@@ -82,4 +82,8 @@ public class MelterTileEntity extends MachineTileEntity implements ITickableTile
     public FluidStorageImpl getFluidImpl() {
         return fluidStorage;
     }
+
+    public int getMaxWorkTime() {
+        return workTime;
+    }
 }

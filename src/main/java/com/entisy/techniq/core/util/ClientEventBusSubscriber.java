@@ -13,6 +13,7 @@ import com.entisy.techniq.common.block.electricalFurnace.ElectricalFurnaceScreen
 import com.entisy.techniq.common.block.fluidStorage.FluidStorageScreen;
 import com.entisy.techniq.common.block.furnaceGenerator.FurnaceGeneratorScreen;
 import com.entisy.techniq.common.block.harvester.HarvesterScreen;
+import com.entisy.techniq.common.block.melter.MelterScreen;
 import com.entisy.techniq.common.block.metalPress.MetalPressScreen;
 //import com.entisy.techniq.common.block.displayCase.DisplayCaseTileEntityRenderer;
 import com.entisy.techniq.common.block.oreMiner.advancedOreMiner.AdvancedOreMinerScreen;
@@ -54,6 +55,7 @@ public class ClientEventBusSubscriber {
 		ScreenManager.register(ModContainerTypes.CRUSHER_CONTAINER_TYPE.get(), CrusherScreen::new);
 		ScreenManager.register(ModContainerTypes.COMPRESSOR_CONTAINER_TYPE.get(), CompressorScreen::new);
 		ScreenManager.register(ModContainerTypes.FLUID_STORAGE_CONTAINER_TYPE.get(), FluidStorageScreen::new);
+		ScreenManager.register(ModContainerTypes.MELTER_CONTAINER_TYPE.get(), MelterScreen::new);
 
 		ScreenManager.register(ModContainerTypes.BACKPACK_CONTAINER_TYPE.get(), BackpackScreen::new);
 
