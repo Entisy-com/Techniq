@@ -12,6 +12,6 @@
 ## Authors
 
 - [@Kimunachan](https://www.github.com/Kimunachan)
-- [@entisyde](https://www.github.com/entisyde)
+- [@neariyeveryone](https://www.github.com/neariyeveryone)
 - [@LordMalto](https://www.github.com/LordMalto)
 
